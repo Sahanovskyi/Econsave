@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_settings">Налаштування</string>
+    <string name="navigation_drawer_close">Закрити вікно навігації</string>
+    <string name="navigation_drawer_open">Відкрти вікн навігації</string>
+    <string name="expenses_label">Витрати</string>
+    <string name="income_label">Доходи</string>
+    <string name="review">Огляд</string>
+    <string name="forecast">Прогноз</string>
+    <string name="decisionItem">Рішення</string>
+    <string name="hello_blank_fragment">Привіт з фрагменту</string>
+
+    <string-array
+        name="main_spinner_items">
+        <item>Останній тиждень</item>
+        <item>Останній місяць</item>
+        <item>Останній квартал</item>
+        <item>Останні пів року</item>
+        <item>Останній рік</item>
+        <item>Останні 5 років</item>
+    </string-array>
+    <string name="cancel">Скасувати</string>
+
+    <string name="group_by">Групувати за</string>
+    <string name="choose_period_title">Виберіть період</string>
+
+
+
+
+    <string-array name="forecast_spinner_items">
+        <item>Останній місяць</item>
+        <item>Останній квартал</item>
+        <item>Останні пів року</item>
+        <item>Останній рік</item>
+        <item>Останні 5 років</item>
+    </string-array>
+
+    <string name="choose_grouping_title">Виберіть період групування</string>
+    <string-array name="forecast_group_items">
+        <item>Без групування</item>
+        <item>День</item>
+        <item>Тиждень</item>
+        <item>Місяць</item>
+    </string-array>
+
+
+
+
+    <string name="balance_chart_name">Економічне становище</string>
+    <string name="index_label">Економічний показник</string>
+    <string name="decision_type">Тип рішення</string>
+    <string name="next">Далі</string>
+    <string name="previous">Назад</string>
+
+    <string-array name="decision_type_items">
+        <item>Купити актив</item>
+        <item>Продати актив</item>
+        <item>Взяти кредит</item>
+        <item>Відкрити депозит</item>
+    </string-array>
+
+
+    <string-array name="deposit_types">
+        <item>Капіталізація відсотків (щомісячна)</item>
+        <item>Капіталізація відсотків (щоквартальна)</item>
+        <item>Виплата відсотків щомісячно</item>
+        <item>Виплата відсотків щоквартально</item>
+        <item>Виплата відсотків в кінці терміну</item>
+    </string-array>
+
+    <string-array name="duration_items">
+        <item>Місяців</item>
+        <item>Років</item>
+    </string-array>
+
+    <string name="chosen_error_message">Будь ласка, виберіть елемент з списку</string>
+    <string name="from">Від</string>
+    <string name="to">До</string>
+    <string name="amount_fragment_title">Орієнтовна сума</string>
+    <string name="balance_label">Залишок коштів</string>
+    <string name="tip_label">Порада дня:</string>
+    <string name="tip_entertainment">Ви можете зекономити на розвагах</string>
+    <string name="amount_interval_error_message">Будь ласка, введіть корректний інтервал</string>
+
+    <string name="decision_assets_type">Тип активу</string>
+    <string-array name="decision_assets_type_items">
+        <item>Рухомість</item>
+        <item>Нерухомість</item>
+        <item>Цінні папери</item>
+        <item>Побутова техніка</item>
+    </string-array>
+
+    <string name="decision_priority">Пріоритет рішення</string>
+    <string-array name="decision_priority_items">
+        <item>Високий</item>
+        <item>Середній</item>
+        <item>Низький</item>
+    </string-array>
+
+    <string name="done">Готово</string>
+    <string name="exit">Вихід</string>
+    <string name="interest_rate">Відцоткова ставка</string>
+
+    //Decision list fragment
+    <string name="decision_tags_label">Популярні теги</string>
+
+    //Decision menu items
+    <string name="decision_wizard_item">Помічник</string>
+    <string name="decision_list_item">Список рішень</string>
+
+    //Exception
+    <string name="exception_message_generic">Сталася помилка</string>
+    <string name="exception_message_no_connection">Немає інтернет з\'єднання</string>
+    <string name="exception_message_sms_reading">Сталася помилка при зчитування SMS</string>
+    <string name="exception_message_number_not_found">Немає SMS від вказаного номера</string>
+    <string name="action_overview">Огляд</string>
+    <string name="action_accounts">Рахунки</string>
+    <string name="action_dashboard"></string>
+    <string name="action_reports">Звіти</string>
+    <string name="action_log_out">Вихід</string>
+    <string name="action_charts">Діаграми</string>
+    <string name="create_account">Зареєструватись</string>
+    <string name="sign_in_email">Ввійти з Email</string>
+    <string name="action_records">Записи</string>
+    <string name="current_average_expenses">Поточні витрати</string>
+    <string name="current_average_income">Поточний дохід</string>
+    <string name="current_balance">Поточний залишок</string>
+    <string name="current_index">Поточний економічний індекс</string>
+    <string name="expected_average_expenses">Прогнозовані витрати</string>
+    <string name="expected_average_income">Прогнозовані доходи</string>
+    <string name="expected_balance">Прогнозований залишок</string>
+    <string name="expected_index">Прогнозований індекс</string>
+    <string name="null_transaction_items_list">Список транзакцій не отримано! Спробуйте пізніше</string>
+    <string name="transactions_label">Транзакції</string>
+    <string name="deposit_type">Виберіть тип депозиту</string>
+    <string name="credit_duration_label">Тривалість кредиту</string>
+    <string name="deposit_duration_label">Тривалість депозиту</string>
+    <string name="negative">Негативний</string>
+    <string name="neutral">Нейтральний</string>
+    <string name="positive">Позитивний</string>
+    <string name="aduration_error_message">Будь ласка, введіть коректний термін</string>
+    <string name="trend">Тренд</string>
+    <string name="open_deposit">Депозит</string>
+    <string name="sell_asset">Продаж активу</string>
+    <string name="take_credit">Кредит</string>
+    <string name="buy_asset">Купівля активу</string>
+
+
+</resources>

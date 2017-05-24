@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.gw.presentation.view.fragment.DecisionListFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="7dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="7dp">
+
+        <TextView
+            android:id="@+id/tvTag1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:linksClickable="true"
+            android:paddingLeft="2dp"
+            android:paddingRight="6dp"
+            android:text="#покупка"
+            android:textColor="@color/darkBlueTextColor"
+            android:theme="@style/tag_text" />
+
+        <TextView
+            android:id="@+id/tvTag2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:linksClickable="true"
+            android:paddingLeft="2dp"
+            android:paddingRight="6dp"
+            android:text="#техніка"
+            android:textColor="@color/darkBlueTextColor"
+            android:theme="@style/tag_text" />
+
+        <TextView
+            android:id="@+id/tvTag3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:linksClickable="true"
+            android:paddingLeft="2dp"
+            android:paddingRight="6dp"
+            android:text="#інвестиції"
+            android:textColor="@color/darkBlueTextColor"
+            android:theme="@style/tag_text" />
+
+        <TextView
+            android:id="@+id/tvTag4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:linksClickable="true"
+            android:paddingLeft="2dp"
+            android:paddingRight="6dp"
+            android:text="#депозит"
+            android:textColor="@color/darkBlueTextColor"
+            android:theme="@style/tag_text" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_decisions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
+
+
+</LinearLayout>

@@ -1,0 +1,80 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppStartTheme" parent="AppTheme.NoActionBar">
+        <item name="colorPrimaryDark">@color/black</item>
+
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="text">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">16dp</item>
+        <!--<item name="android:textStyle">bold</item>-->
+    </style>
+
+    <style name="radio_button">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/dark_blue_gray</item>
+        <!--<item name="android:textStyle">bold</item>-->
+    </style>
+
+    <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/buttons_background</item>
+        <item name="android:textColor">@color/blueTextColor</item>
+    </style>
+
+    <style name="AppTheme.LoginButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/buttons_background</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="AppTheme.TagButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/buttons_background</item>
+        <item name="android:textColor">@color/darkBlueTextColor</item>
+        <item name="android:textSize">8sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/tag_button_height</item>
+    </style>
+
+    <style name="progressBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_bar</item>
+    </style>
+
+    <style name="decision_header_text" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:textSize">24sp</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_weight">6</item>
+        <item name="android:textColor">@color/gray</item>
+
+    </style>
+
+    <style name="tag_text">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/darkBlueTextColor</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="ThemeDialogCustom" parent="AlertDialog.AppCompat.Light">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+</resources>

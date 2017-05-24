@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#48a5d7</color>
+    <color name="colorPrimaryDark">#4693ca</color>
+    <color name="colorAccent">#2b86cc</color>
+    <color name="tabsScrollColor">#9835a9ed</color>
+
+    <color name="colorProgress">#3377a7</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="background">#e9f2f5</color>
+
+
+    <color name="transp_black">#32000000</color>
+
+    <color name="blueTextColor">#35a9ed</color>
+    <color name="darkBlueTextColor">#1b30ba</color>
+    <color name="redTextColor">#ea2c2f</color>
+    <color name="greenTextColor">#32c62a</color>
+
+    <color name="buttons_background">#ffffff</color>
+    <color name="gray">#7c7c7c</color>
+    <color name="black">#000000</color>
+
+    <color name="dark_blue_gray">#263238</color>
+
+
+    <color name="white">#ffffff</color>
+    <color name="green_arrow">#00ca07</color>
+    <color name="red_arrow">#ff0000</color>
+
+    <color name="blue_white">#e4efff</color>
+    <color name="green_dark">#bccedc</color>
+    <color name="bright_grey">#e6e6e6</color>
+    <color name="button_green">#ffffff</color>
+</resources>

@@ -1,0 +1,186 @@
+<resources>
+    <string name="app_name" translatable="false">Econsave</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    //action items
+    <string name="action_settings">Settings</string>
+    <string name="action_overview">Overview</string>
+    <string name="action_accounts">Accounts</string>
+    <string name="action_dashboard">Dashboard</string>
+    <string name="action_reports">Reports</string>
+    <string name="action_charts">Charts</string>
+    <string name="action_records">Records</string>
+    <string name="action_log_out">Log out</string>
+
+
+    <string name="review">Review</string>
+    <string name="forecast">Forecast</string>
+    <string name="decisionItem">Decisions</string>
+
+    //Main view labels
+
+    <string name="balance_label">Account balance</string>
+    <string name="transactions_label">Transactions</string>
+    <string name="income_label">Income</string>
+    <string name="expenses_label">Expenses</string>
+    <string name="index_label">Economic index</string>
+
+    <string name="amount_fragment_title">Approximate amount of money</string>
+
+    <string name="balance_chart_name">Economic status</string>
+
+
+    <string name="from">From</string>
+    <string name="to">To</string>
+
+    <string name="tip_label">Tip of the day:</string>
+    <string name="tip_entertainment">You can save money on entertainments</string>
+    <string name="interest_rate">Interest rate</string>
+
+
+    <string-array name="main_spinner_items">
+        <item>Last week</item>
+        <item>Last  month</item>
+        <item>Last quarter</item>
+        <item>Last Half-year</item>
+        <item>Last year</item>
+        <item>Last 5 years</item>
+    </string-array>
+
+
+    <string name="cancel">Cancel</string>
+
+    //Forecast screen
+    <string name="choose_period_title">Choose the period</string>
+    <string-array name="forecast_spinner_items">
+        <item>Last  month</item>
+        <item>Last quarter</item>
+        <item>Last Half-year</item>
+        <item>Last year</item>
+        <item>Last 5 years</item>
+    </string-array>
+
+    <string name="choose_grouping_title">Choose the grouping period</string>
+    <string-array name="forecast_group_items">
+        <item>No grouping</item>
+        <item>Day</item>
+        <item>Week</item>
+        <item>Month</item>
+    </string-array>
+
+    <string name="group_by">Group by</string>
+
+    <string name="trend">Trend</string>
+
+
+
+    <string name="positive">Positive</string>
+    <string name="negative">Negative</string>
+    <string name="neutral">Neutral</string>
+
+    ///////////////////////////////////////////////////////////////////////////////
+
+
+    <string name="current_balance">Current account balance</string>
+    <string name="expected_balance">Expected account balance</string>
+
+    <string name="current_average_income">Current average income</string>
+    <string name="expected_average_income">Expected average income</string>
+
+    <string name="current_average_expenses">Current average expenses</string>
+    <string name="expected_average_expenses">Expected average expenses</string>
+
+    <string name="current_index">Current economic index</string>
+    <string name="expected_index">Expected economic index</string>
+
+
+    //Buttons labels
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="done">Done</string>
+    <string name="exit">Exit</string>
+
+    <string name="buy_asset">Buy an asset</string>
+    <string name="sell_asset">Sell an asset</string>
+    <string name="take_credit">Credit</string>
+    <string name="open_deposit">Open deposit</string>
+
+    <string name="decision_type">Decision type</string>
+    <string-array name="decision_type_items">
+        <item>Buy an asset</item>
+        <item>Sell an asset</item>
+        <item>Take credit</item>
+        <item>Open deposit</item>
+    </string-array>
+
+    <string name="deposit_type">Choose the deposit type</string>
+    <string-array name="deposit_types">
+        <item>Interest capitalization (monthly)</item>
+        <item>Interest capitalization (quarterly)</item>
+        <item>Interest payment monthly</item>
+        <item>Interest payments quarterly</item>
+        <item>Payment of interest at maturity</item>
+    </string-array>
+
+    <string name="credit_duration_label">Choose the credit duration</string>
+    <string name="deposit_duration_label">Choose the deposit duration</string>
+    <string name="decision_priority">Decision priority</string>
+    <string-array name="decision_priority_items">
+        <item>High</item>
+        <item>Middle</item>
+        <item>Low</item>
+    </string-array>
+
+    <string-array name="duration_items">
+        <item>Months</item>
+        <item>Years</item>
+    </string-array>
+
+    <string name="decision_assets_type">Type of the asset</string>
+    <string-array name="decision_assets_type_items">
+        <item>Movables</item>
+        <item>Realty</item>
+        <item>Securities</item>
+        <item>Household appliances</item>
+    </string-array>
+
+
+    //Decision list fragment
+    <string name="decision_tags_label">Popular tegs</string>
+
+
+    //Decision menu items
+    <string name="decision_wizard_item">Decision wizard</string>
+    <string name="decision_list_item">Decision list</string>
+
+    //Login activity
+    <string name="create_account">Sign up</string>
+    <string name="sign_in_email">Sign in with Email</string>
+
+
+    //Exception
+    <string name="exception_message_generic">There was an application error</string>
+    <string name="exception_message_no_connection">There is no internet connection</string>
+    <string name="exception_message_sms_reading">Can\'t read sms</string>
+    <string name="exception_message_number_not_found">There is not SMS from this number</string>
+
+    //Error messages
+    <string name="chosen_error_message">Please choose an item</string>
+    <string name="amount_interval_error_message">Please write correct amount value</string>
+    <string name="aduration_error_message">Please write correct duration value</string>
+    <string name="null_transaction_items_list">Haven\'t got transaction history yet! Try again later.</string>
+
+
+    //Auth
+    <string name="server_client_id" translatable="false">1078471589066-pol6eluks8c8ec1v0b888ldj7qiv77j3.apps.googleusercontent.com</string>
+    <string name="facebook_app_id" translatable="false">310546899383757</string>
+
+
+    <string name="title_activity_sign_in" translatable="false">Econsave</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
