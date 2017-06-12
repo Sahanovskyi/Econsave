@@ -35,6 +35,9 @@
     <string name="from">From</string>
     <string name="to">To</string>
 
+    <string name="tip_label_decision">Tip</string>
+
+
     <string name="tip_label">Tip of the day:</string>
     <string name="tip_entertainment">You can save money on entertainments</string>
     <string name="interest_rate">Interest rate</string>
@@ -83,7 +86,7 @@
     ///////////////////////////////////////////////////////////////////////////////
 
 
-    <string name="current_balance">Current account balance</string>
+    <string name="current_balance">Account balance</string>
     <string name="expected_balance">Expected account balance</string>
 
     <string name="current_average_income">Current average income</string>
@@ -155,6 +158,9 @@
     <string name="decision_wizard_item">Decision wizard</string>
     <string name="decision_list_item">Decision list</string>
 
+    <string name="decision_effect">Decision\'s effect</string>
+
+
     //Login activity
     <string name="create_account">Sign up</string>
     <string name="sign_in_email">Sign in with Email</string>
@@ -166,6 +172,12 @@
     <string name="exception_message_sms_reading">Can\'t read sms</string>
     <string name="exception_message_number_not_found">There is not SMS from this number</string>
 
+    //Predictions
+    <string name="positive_prediction">This decision will have a positive effect</string>
+    <string name="negative_prediction">This decision will have a negative effect</string>
+    <string name="cannot_afford_prediction">You don\'t have enough money to make this decision</string>
+    <string name="good_prediction">It\'s a good decision</string>
+
     //Error messages
     <string name="chosen_error_message">Please choose an item</string>
     <string name="amount_interval_error_message">Please write correct amount value</string>
@@ -176,6 +188,7 @@
     //Auth
     <string name="server_client_id" translatable="false">1078471589066-pol6eluks8c8ec1v0b888ldj7qiv77j3.apps.googleusercontent.com</string>
     <string name="facebook_app_id" translatable="false">310546899383757</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb310546899383757</string>
 
 
     <string name="title_activity_sign_in" translatable="false">Econsave</string>

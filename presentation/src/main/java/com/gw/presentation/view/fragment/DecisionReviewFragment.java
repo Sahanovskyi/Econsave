@@ -1,10 +1,12 @@
 package com.gw.presentation.view.fragment;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -27,6 +29,7 @@ import com.gw.presentation.view.activity.MainActivity;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -40,10 +43,14 @@ public class DecisionReviewFragment extends BaseFragment implements DecisionView
     @Inject
     DecisionReviewPresenter presenter;
 
-    @BindView(R.id.decision_chart)
-    LineChart chart;
-    @BindView(R.id.decision_head_label)
-    TextView tvLabel;
+    @BindView(R.id.decision_chart) LineChart chart;
+    @BindView(R.id.decision_head_label) TextView tvLabel;
+    @BindView(R.id.decision_tv_current_value) TextView tvCurrent;
+    @BindView(R.id.decision_tv_expected_value) TextView tvExpected;
+    @BindView(R.id.decision_tv_effect_value) TextView tvEffect;
+    @BindView(R.id.decision_trend_arrow) ImageView trendArrow;
+    @BindView(R.id.decision_trend_tv) TextView tvTrend;
+    @BindView(R.id.decision_tv_tip) TextView tvTip;
 
 
     public DecisionReviewFragment() {
@@ -145,6 +152,7 @@ public class DecisionReviewFragment extends BaseFragment implements DecisionView
     }
 
 
+
     @Override public Context context() {
         return this.getActivity().getApplicationContext();
     }
@@ -155,6 +163,42 @@ public class DecisionReviewFragment extends BaseFragment implements DecisionView
             chart.setData(data);
             chart.animateY(700);
             chart.invalidate();
+        }
+    }
+
+    @Override
+    public void setTip(String tip) {
+        this.tvTip.setText(tip);
+    }
+
+    @Override
+    public void setCurrentBalance(double amount) {
+        tvCurrent.setText(String.format(Locale.getDefault(), "%.0f", amount));
+
+    }
+
+    @Override
+    public void setExpectedBalance(double amount) {
+        tvExpected.setText(String.format(Locale.getDefault(), "%.0f", amount));
+    }
+
+    @Override
+    public void setDecisionEffectBalance(double amount) {
+        tvEffect.setText(String.format(Locale.getDefault(), "%.0f", amount));
+    }
+
+    @Override
+    public void setTrend(double trend) {
+        tvTrend.setText(String.format(Locale.getDefault(), "%+2.2f%%", trend));
+
+        if(trend >= 0) {
+                tvTrend.setTextColor(getActivity().getResources().getColor(R.color.green_arrow));
+                trendArrow.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_arrow_up_green));
+                setTip(getString(R.string.positive_prediction));
+        } else {
+                tvTrend.setTextColor(getActivity().getResources().getColor(R.color.red_arrow));
+                trendArrow.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_arrow_down_red));
+                setTip(getString(R.string.negative_prediction));
         }
     }
 

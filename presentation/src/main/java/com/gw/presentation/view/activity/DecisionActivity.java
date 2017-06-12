@@ -169,4 +169,5 @@ public class DecisionActivity extends BaseActivity implements com.gw.presentatio
 
         replaceFragment(R.id.decision_fragment_container, mFragment, false);
     }
+
 }

@@ -44,6 +44,7 @@
     <style name="AppTheme.LoginButton" parent="Widget.AppCompat.Button.Colored">
         <item name="colorButtonNormal">@color/buttons_background</item>
         <item name="android:textColor">@color/gray</item>
+        <item name="android:layout_height">60dp</item>
     </style>
 
     <style name="AppTheme.TagButton" parent="Widget.AppCompat.Button.Colored">

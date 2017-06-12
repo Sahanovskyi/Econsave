@@ -18,7 +18,7 @@ import com.gw.domain.exception.IntervalAmountException;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AmountDecisionFragment extends Fragment {
+public class AmountDecisionFragment extends BaseFragment {
     public interface OnTextChangeListener {
         void onDonePressed();
     }
@@ -104,13 +104,6 @@ public class AmountDecisionFragment extends Fragment {
 
     }
 
-    public String getEtFromText() {
-        return etFrom.getText().toString();
-    }
-
-    public String getEtToText() {
-        return etTo.getText().toString();
-    }
 
     public double getAverage(){
 

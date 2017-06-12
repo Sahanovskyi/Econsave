@@ -17,7 +17,7 @@ import com.gw.presentation.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ChooseDurationFragment extends Fragment {
+public class ChooseDurationFragment extends BaseFragment {
 
     private static final String ARG_TITLE = "Fragment title";
     private String mTitle = "";

@@ -45,30 +45,38 @@
             android:id="@+id/sign_in_google_btn"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginBottom="@dimen/view_margin"
-            app:buttonSize="wide">
+            android:layout_marginBottom="16dp"
+            app:buttonSize="wide"
+
+            >
 
         </com.google.android.gms.common.SignInButton>
 
-        <Button
+        <com.facebook.login.widget.LoginButton
             android:id="@+id/sign_in_fb_btn"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            android:textSize="14sp"
+            android:theme="@style/AppTheme.LoginButton"
 
-            android:text="@string/sign_in_email"
-            android:textAllCaps="false"
-            android:theme="@style/AppTheme.LoginButton" />
+            />
 
         <Button
             android:id="@+id/sign_in_email_btn"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:drawableLeft="@drawable/ic_mail_outline_black_24dp"
-
             android:text="@string/sign_in_email"
             android:textAllCaps="false"
-            android:theme="@style/AppTheme.LoginButton" />
+            android:theme="@style/AppTheme.LoginButton"
+            />
 
         <TextView
             android:id="@+id/tvCreateAccount"

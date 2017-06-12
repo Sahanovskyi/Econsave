@@ -99,7 +99,7 @@
 
     <string name="done">Готово</string>
     <string name="exit">Вихід</string>
-    <string name="interest_rate">Відцоткова ставка</string>
+    <string name="interest_rate">Відсоткова ставка</string>
 
     //Decision list fragment
     <string name="decision_tags_label">Популярні теги</string>
@@ -124,7 +124,7 @@
     <string name="action_records">Записи</string>
     <string name="current_average_expenses">Поточні витрати</string>
     <string name="current_average_income">Поточний дохід</string>
-    <string name="current_balance">Поточний залишок</string>
+    <string name="current_balance">Залишок</string>
     <string name="current_index">Поточний економічний індекс</string>
     <string name="expected_average_expenses">Прогнозовані витрати</string>
     <string name="expected_average_income">Прогнозовані доходи</string>
@@ -144,6 +144,12 @@
     <string name="sell_asset">Продаж активу</string>
     <string name="take_credit">Кредит</string>
     <string name="buy_asset">Купівля активу</string>
+    <string name="tip_label_decision">Порада</string>
+    <string name="negative_prediction">Дане рішення негативно вплине на Ваш баланс</string>
+    <string name="positive_prediction">Дане рішення позитивно вплине на Ваш баланс</string>
+    <string name="cannot_afford_prediction">На даний момент Ви не володієте достатніми ресурсами</string>
+    <string name="decision_effect">Вплив рішення</string>
+    <string name="good_prediction">Це хороше рішення</string>
 
 
 </resources>

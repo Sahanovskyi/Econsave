@@ -35,7 +35,7 @@ public class TransactionsManager {
                 calendar.add(Calendar.MONTH, -1);
                 break;
             case LAST_QUARTER:
-                calendar.add(Calendar.MONTH, -4);
+                calendar.add(Calendar.MONTH, -3);
                 break;
             case LAST_HALF_YEAR:
                 calendar.add(Calendar.MONTH, -6);
@@ -61,7 +61,7 @@ public class TransactionsManager {
                 calendar.add(Calendar.MONTH, 1);
                 break;
             case LAST_QUARTER:
-                calendar.add(Calendar.MONTH, 4);
+                calendar.add(Calendar.MONTH, 3);
                 break;
             case LAST_HALF_YEAR:
                 calendar.add(Calendar.MONTH, 6);
@@ -488,7 +488,7 @@ public class TransactionsManager {
         Map.Entry<Date, Double> pair = it.next();
         final long day = 1000 * 60 * 60 * 24;
 
-        double balance = map1.firstEntry().getValue();
+        double balance = 0;
 
 
         for (Map.Entry<Date, Double> entry : map1.entrySet()) {

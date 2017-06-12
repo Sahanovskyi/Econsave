@@ -35,13 +35,17 @@ public class OpenDeposit extends Decision {
         TreeMap<Date, Double> map = new TreeMap<>();
 
         Calendar calendar = Calendar.getInstance();
+        map.put(calendar.getTime(), 0.0);
+        calendar.add(Calendar.DATE, 1);
         map.put(calendar.getTime(), getAmount() * (-1));
 
         double percent = mInterestRate * 1 / 12;
-        double final_amount = getAmount() * Math.pow((1 + percent), mDepositDuration);
+        double final_amount = (getAmount() * Math.pow((1 + percent), mDepositDuration)) - getAmount() ;
 
         calendar.add(Calendar.MONTH, mDepositDuration);
 
+        map.put(calendar.getTime(), final_amount);
+        calendar.add(Calendar.DATE, 2);
         map.put(calendar.getTime(), final_amount);
 
         return map;
@@ -51,14 +55,20 @@ public class OpenDeposit extends Decision {
         TreeMap<Date, Double> map = new TreeMap<>();
 
         Calendar calendar = Calendar.getInstance();
+        map.put(calendar.getTime(), 0.0);
+        calendar.add(Calendar.DATE, 1);
+
         map.put(calendar.getTime(), getAmount() * (-1));
 
         double percent = mInterestRate * 4 / 12;
-        double final_amount = getAmount() * Math.pow((1 + percent), mDepositDuration);
+        double final_amount = (getAmount() * Math.pow((1 + percent), mDepositDuration)) - getAmount();
 
         calendar.add(Calendar.MONTH, mDepositDuration);
 
         map.put(calendar.getTime(), final_amount);
+        calendar.add(Calendar.DATE, 2);
+        map.put(calendar.getTime(), final_amount);
+
 
         return map;
     }
@@ -81,6 +91,8 @@ public class OpenDeposit extends Decision {
         tmp_balance += getAmount();
 
         map.put(calendar.getTime(), tmp_balance);
+        calendar.add(Calendar.DATE, 2);
+        map.put(calendar.getTime(), tmp_balance);
 
         return map;
     }
@@ -95,8 +107,8 @@ public class OpenDeposit extends Decision {
         map.put(calendar.getTime(), tmp_balance);
         int i;
 
-        for (i = 1; i <= mDepositDuration; i += 4) {
-            calendar.add(Calendar.MONTH, 4);
+        for (i = 1; i <= mDepositDuration; i += 3) {
+            calendar.add(Calendar.MONTH, 3);
             tmp_balance += monthly_payment_amount;
             map.put(calendar.getTime(), tmp_balance);
         }
@@ -104,6 +116,8 @@ public class OpenDeposit extends Decision {
         if (i < mDepositDuration)
             calendar.add(Calendar.MONTH, mDepositDuration - i);
 
+        map.put(calendar.getTime(), tmp_balance);
+        calendar.add(Calendar.DATE, 2);
         map.put(calendar.getTime(), tmp_balance);
 
         return map;
@@ -117,6 +131,8 @@ public class OpenDeposit extends Decision {
 
         double monthly_payment_amount = getAmount() * mInterestRate / 12;
         calendar.add(Calendar.MONTH, mDepositDuration);
+        map.put(calendar.getTime(), monthly_payment_amount * mInterestRate + getAmount());
+        calendar.add(Calendar.DATE, 2);
         map.put(calendar.getTime(), monthly_payment_amount * mInterestRate + getAmount());
 
         return map;

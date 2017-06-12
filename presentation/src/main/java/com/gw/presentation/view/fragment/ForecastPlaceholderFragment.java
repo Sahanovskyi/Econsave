@@ -309,4 +309,5 @@ public class ForecastPlaceholderFragment extends Fragment {
         }
     }
 
+
 }

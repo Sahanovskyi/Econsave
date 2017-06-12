@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class RadioButtonFragment extends Fragment implements ChooseAdapter.IProcessFilter {
+public class RadioButtonFragment extends BaseFragment implements ChooseAdapter.IProcessFilter {
 
     @BindView(R.id.tvDecisionFragment) TextView tv;
     @BindView(R.id.frament_list) ListView fragmentList;

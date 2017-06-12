@@ -170,7 +170,7 @@ dependencies {
     compile presentationDependencies.playServicesAuth;
     compile presentationDependencies.firebaseAuth;
     compile presentationDependencies.firebaseDatabase;
-
+    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     provided presentationDependencies.javaxAnnotation
 
     androidTestCompile presentationTestDependencies.mockito

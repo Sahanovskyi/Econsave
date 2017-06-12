@@ -10,4 +10,9 @@ import com.gw.presentation.view.activity.ForecastActivity;
 
 public interface DecisionView extends View {
     void updateChart(LineData data);
+    void setTip(String tip);
+    void setCurrentBalance(double amount);
+    void setExpectedBalance(double amount);
+    void setDecisionEffectBalance(double amount);
+    void setTrend(double trend);
 }
