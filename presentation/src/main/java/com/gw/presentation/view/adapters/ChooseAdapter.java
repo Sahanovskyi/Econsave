@@ -9,6 +9,8 @@ import android.widget.RadioButton;
 
 import com.gw.presentation.R;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 
@@ -22,9 +24,9 @@ public class ChooseAdapter extends ArrayAdapter<String> {
     private LayoutInflater mLayoutInflater;
     private RadioButton mSelectedRB;
     private int mSelectedPosition = -1;
-    private ArrayList<String> items;
+    private ArrayList<String> mItems;
     private IProcessFilter mCallback;
-    private boolean isNew = true;
+    private boolean mIsNew = true;
 
     public ChooseAdapter(Context context, int resource, ArrayList<String> objects, IProcessFilter callback) {
         super(context, resource, objects);
@@ -32,13 +34,14 @@ public class ChooseAdapter extends ArrayAdapter<String> {
         if (callback.getPosition() != -1) {
             mSelectedPosition = callback.getPosition();
         }
-        items = objects;
+        mItems = objects;
         mResourceId = resource;
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
+    @NotNull
     @Override
-    public View getView(final int position, View convertView, final ViewGroup parent) {
+    public View getView(final int position, View convertView, @NotNull final ViewGroup parent) {
         View view = convertView;
         ViewHolder holder;
 
@@ -48,7 +51,7 @@ public class ChooseAdapter extends ArrayAdapter<String> {
             holder = new ViewHolder();
 
             holder.radioBtn = (RadioButton) view.findViewById(R.id.selection_radioButton);
-            holder.radioBtn.setText(items.get(position));
+            holder.radioBtn.setText(mItems.get(position));
 
             view.setTag(holder);
         } else {
@@ -70,8 +73,8 @@ public class ChooseAdapter extends ArrayAdapter<String> {
             }
         });
 
-        if (isNew && mSelectedPosition != -1 && position == mSelectedPosition) {
-            isNew = false;
+        if (mIsNew && mSelectedPosition != -1 && position == mSelectedPosition) {
+            mIsNew = false;
             holder.radioBtn.callOnClick();
         }
 

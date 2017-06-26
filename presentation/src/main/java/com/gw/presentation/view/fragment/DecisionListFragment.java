@@ -169,6 +169,7 @@ public class DecisionListFragment extends BaseFragment implements DecisionListVi
     public interface DecisionListListener {
         void onDecisionClicked(final DecisionModel decisionModel);
     }
+
 //    @Override
 //    public void onAttach(Context context) {
 //        super.onAttach(context);

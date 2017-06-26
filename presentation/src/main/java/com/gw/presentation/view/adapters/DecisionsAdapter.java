@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gw.presentation.R;
@@ -93,9 +92,7 @@ public class DecisionsAdapter extends RecyclerView.Adapter<DecisionsAdapter.Deci
 
         @BindView(R.id.decision_list_tags_text)
         TextView textViewTags;
-//
-//        @BindView(R.id.decision_list_icon)
-//        ImageView imageView;
+
 
         DecisionViewHolder(View itemView) {
             super(itemView);

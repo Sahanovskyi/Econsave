@@ -72,7 +72,6 @@ public class CacheImpl implements Cache {
             final File transactionItemEntityFile = this.buildFile(fileName);
             this.executeAsynchronously(new CacheWriter(this.fileManager, transactionItemEntityFile, transactionItemEntityList));
             setLastCacheUpdateTimeMillis();
-
         }
     }
 

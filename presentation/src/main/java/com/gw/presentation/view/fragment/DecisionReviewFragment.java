@@ -1,7 +1,6 @@
 package com.gw.presentation.view.fragment;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +37,7 @@ import butterknife.ButterKnife;
 
 
 public class DecisionReviewFragment extends BaseFragment implements DecisionView{
+
     private static final String ARG_DECISION = "decision tag";
 
     @Inject
@@ -75,7 +75,6 @@ public class DecisionReviewFragment extends BaseFragment implements DecisionView
             this.presenter.setTransactionsList((ArrayList<TransactionItem>) getArguments().getSerializable(MainActivity.ARG_TRANSACTION_ITEMS_LIST));
             this.presenter.setDecision((Decision)getArguments().getSerializable(ARG_DECISION));
         }
-
     }
 
     @Override
@@ -174,7 +173,6 @@ public class DecisionReviewFragment extends BaseFragment implements DecisionView
     @Override
     public void setCurrentBalance(double amount) {
         tvCurrent.setText(String.format(Locale.getDefault(), "%.0f", amount));
-
     }
 
     @Override
@@ -206,7 +204,6 @@ public class DecisionReviewFragment extends BaseFragment implements DecisionView
         this.showToastMessage(message);
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -219,12 +216,10 @@ public class DecisionReviewFragment extends BaseFragment implements DecisionView
         this.presenter.pause();
     }
 
-
     @Override
     public void onDestroy() {
         super.onDestroy();
         this.presenter.destroy();
     }
-
 
 }

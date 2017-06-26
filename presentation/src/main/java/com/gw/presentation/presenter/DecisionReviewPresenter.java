@@ -28,10 +28,6 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-/**
- * Created by vadym on 20.05.17.
- */
-
 @PerActivity
 public class DecisionReviewPresenter implements Presenter {
 
@@ -114,7 +110,7 @@ public class DecisionReviewPresenter implements Presenter {
         TreeMap<Date, Double> expensesMap = this.mTransactionsManager.groupExpenses(
                 this.mTransactionsManager.getExpensesMap(mTransactionsList, Interval.LAST_HALF_YEAR), Period.DAY);
 
-        double dayly_expenses = mTransactionsManager.getAverageExpenses(expensesMap);
+        double daily_expenses = mTransactionsManager.getAverageExpenses(expensesMap);
 
         Date now = new Date();
         Date salary_date = new Date();
@@ -123,7 +119,7 @@ public class DecisionReviewPresenter implements Presenter {
         long days_to_salary = TimeUnit.MILLISECONDS.toDays(salary_date.getTime() - now.getTime());
 
 
-        if (balanceCurrent - mDecision.getAmount() <= dayly_expenses * days_to_salary) {
+        if (balanceCurrent - mDecision.getAmount() <= daily_expenses * days_to_salary) {
             mDecisionView.setTip(mDecisionView.context().getString(R.string.cannot_afford_prediction));
         } else {
 
@@ -151,11 +147,13 @@ public class DecisionReviewPresenter implements Presenter {
         Interval interval;
         Calendar calendar = Calendar.getInstance();
         Date end;
+
         if (mDecision instanceof BuyAsset || mDecision instanceof SellAsset) {
             interval = Interval.LAST_QUARTER;
             calendar.add(Calendar.MONTH, 4);
             end = calendar.getTime();
-        } else {
+        }
+        else {
             interval = Interval.LAST_HALF_YEAR;
             end = mDecision.getPaymentMap().lastEntry().getKey();
         }

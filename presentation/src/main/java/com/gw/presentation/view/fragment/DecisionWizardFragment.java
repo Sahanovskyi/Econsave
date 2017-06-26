@@ -40,17 +40,15 @@ public class DecisionWizardFragment extends BaseFragment implements AmountDecisi
 
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
-
     @BindView(R.id.btn_next)
     Button btnNext;
 
-
-    private int step = 0;
-    private ArrayList<Fragment> mFragmenList;
+    private int mStep = 0;
+    private ArrayList<Fragment> mFragmentList;
 
     private OnWizardCompleteListener mOnWizardCompleteListener;
     private Decision mDecision;
-    private int pos;
+    private int mPosition;
 
 
     public DecisionWizardFragment() {
@@ -66,8 +64,7 @@ public class DecisionWizardFragment extends BaseFragment implements AmountDecisi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.getComponent(DecisionComponent.class).inject(this);
-        this.mFragmenList = new ArrayList<>();
-
+        this.mFragmentList = new ArrayList<>();
     }
 
     @Override
@@ -84,7 +81,7 @@ public class DecisionWizardFragment extends BaseFragment implements AmountDecisi
                 Arrays.asList(getResources().getStringArray(R.array.decision_type_items)));
 
         Fragment fragment = RadioButtonFragment.newInstance(title, items);
-        mFragmenList.add(fragment);
+        mFragmentList.add(fragment);
 
         addChildFragment(R.id.decision_wizard_fragment_container, fragment);
 
@@ -113,9 +110,9 @@ public class DecisionWizardFragment extends BaseFragment implements AmountDecisi
     @Override
     public void onDestroy() {
         try {
-            if (mFragmenList != null) {
-                mFragmenList.clear();
-                mFragmenList = null;
+            if (mFragmentList != null) {
+                mFragmentList.clear();
+                mFragmentList = null;
             }
         } catch (Exception ex) {
             ((DecisionActivity) getActivity()).showError(ex.getMessage());
@@ -125,52 +122,29 @@ public class DecisionWizardFragment extends BaseFragment implements AmountDecisi
     }
 
     private void chooseDecision() {
-        pos = ((RadioButtonFragment) mFragmenList.get(0)).getPosition();
+        mPosition = ((RadioButtonFragment) mFragmentList.get(0)).getPosition();
 
-        if (pos != -1) {
-            decisionByIndex(pos);
+        if (mPosition != -1) {
+            decisionByIndex(mPosition);
         } else {
             showToastMessage(getString(R.string.chosen_error_message));
         }
 
     }
-//
-//    private void secondStep() {
-//        if (pos == 2 || pos == 3) {
-//
-//            if (((AmountDecisionFragment) mSecondFragment).isCorrect()) {
-//                if (pos == 2) {
-//                    ((TakeCredit) mDecision).setInterestRate(((AmountDecisionFragment) mSecondFragment).getAverage());
-//                    ((TakeCredit) mDecision).setCreditDuration(60);
-//                } else {
-//                    ((OpenDeposit) mDecision).setInterestRate(((AmountDecisionFragment) mSecondFragment).getAverage());
-//                    ((OpenDeposit) mDecision).setDepositDuration(12);
-//                }
-//                progressBar.setProgress(++step);
-//                mThirdFragment = AmountDecisionFragment.newInstance(getString(R.string.amount_fragment_title), this);
-//                replaceChildFragment(FRAGMENT_CONTAINER, mThirdFragment);
-//            } else
-//                showToastMessage(getString(R.string.amount_interval_error_message));
-//
-//        } else
-//            showToastMessage("Error");
-//    }
 
 
     private void setAmount() {
 
-        if (((AmountDecisionFragment) mFragmenList.get(step)).isCorrect()) {
-            mDecision.setAmount(((AmountDecisionFragment) mFragmenList.get(step)).getAverage());
-
-            //      btnNext.setText(getString(R.string.done));
+        if (((AmountDecisionFragment) mFragmentList.get(mStep)).isCorrect()) {
+            mDecision.setAmount(((AmountDecisionFragment) mFragmentList.get(mStep)).getAverage());
 
             Fragment fourthFragment = RadioButtonFragment.newInstance(getString(R.string.decision_priority),
                     new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.decision_priority_items))));
 
-            mFragmenList.add(fourthFragment);
+            mFragmentList.add(fourthFragment);
 
             replaceChildFragment(FRAGMENT_CONTAINER, fourthFragment);
-            this.progressBar.setProgress(++step);
+            this.progressBar.setProgress(++mStep);
 
 
         } else {
@@ -179,7 +153,7 @@ public class DecisionWizardFragment extends BaseFragment implements AmountDecisi
     }
 
     private void setPriority() {
-        int priorPos = ((RadioButtonFragment) mFragmenList.get(step)).getPosition();
+        int priorPos = ((RadioButtonFragment) mFragmentList.get(mStep)).getPosition();
         if (priorPos != -1) {
             mDecision.setPriority(Decision.Priority.fromInteger(priorPos));
             mOnWizardCompleteListener.onWizardComplete(mDecision);
@@ -191,21 +165,21 @@ public class DecisionWizardFragment extends BaseFragment implements AmountDecisi
     }
 
     private void buyAsset() {
-        if (step == 0) {
+        if (mStep == 0) {
 
             this.progressBar.setMax(4);
             mDecision = new BuyAsset();
             Fragment secondFragment = RadioButtonFragment.newInstance(getString(R.string.decision_assets_type),
                     new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.decision_assets_type_items))));
             replaceChildFragment(FRAGMENT_CONTAINER, secondFragment);
-            this.mFragmenList.add(secondFragment);
+            this.mFragmentList.add(secondFragment);
 
-            this.progressBar.setProgress(++step);
+            this.progressBar.setProgress(++mStep);
 
 
-        } else if (step == 1) {
+        } else if (mStep == 1) {
 
-            int radioBtnPos = ((RadioButtonFragment) mFragmenList.get(step)).getPosition();
+            int radioBtnPos = ((RadioButtonFragment) mFragmentList.get(mStep)).getPosition();
 
             if (radioBtnPos != -1) {
                 ((BuyAsset) mDecision).setAssetType(BuyAsset.AssetType.fromInteger(radioBtnPos));
@@ -213,25 +187,25 @@ public class DecisionWizardFragment extends BaseFragment implements AmountDecisi
                 Fragment thirdFragment = AmountDecisionFragment.newInstance(getString(R.string.amount_fragment_title), this);
 
                 replaceChildFragment(FRAGMENT_CONTAINER, thirdFragment);
-                mFragmenList.add(thirdFragment);
+                mFragmentList.add(thirdFragment);
 
-                this.progressBar.setProgress(++step);
+                this.progressBar.setProgress(++mStep);
 
             } else {
                 showToastMessage(getString(R.string.chosen_error_message));
             }
 
-        } else if (step == 2) {
+        } else if (mStep == 2) {
             setAmount();
 
-        } else if (step == 3) {
+        } else if (mStep == 3) {
             setPriority();
 
         }
     }
 
     private void sellAsset() {
-        if (step == 0) {
+        if (mStep == 0) {
 
             this.progressBar.setMax(4);
 
@@ -239,87 +213,86 @@ public class DecisionWizardFragment extends BaseFragment implements AmountDecisi
 
             Fragment secondFragment = RadioButtonFragment.newInstance(getString(R.string.decision_assets_type),
                     new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.decision_assets_type_items))));
-            this.mFragmenList.add(secondFragment);
+            this.mFragmentList.add(secondFragment);
 
             replaceChildFragment(FRAGMENT_CONTAINER, secondFragment);
-            this.progressBar.setProgress(++step);
+            this.progressBar.setProgress(++mStep);
 
 
-        } else if (step == 1) {
+        } else if (mStep == 1) {
 
-            int radioBtnPos = ((RadioButtonFragment) mFragmenList.get(step)).getPosition();
+            int radioBtnPos = ((RadioButtonFragment) mFragmentList.get(mStep)).getPosition();
 
             if (radioBtnPos != -1) {
                 ((SellAsset) mDecision).setAssetType(SellAsset.AssetType.fromInteger(radioBtnPos));
 
                 Fragment thirdFragment = AmountDecisionFragment.newInstance(getString(R.string.amount_fragment_title), this);
-                mFragmenList.add(thirdFragment);
+                mFragmentList.add(thirdFragment);
 
                 replaceChildFragment(FRAGMENT_CONTAINER, thirdFragment);
-                this.progressBar.setProgress(++step);
+                this.progressBar.setProgress(++mStep);
 
             } else {
                 showToastMessage(getString(R.string.chosen_error_message));
             }
 
 
-        } else if (step == 2) {
+        } else if (mStep == 2) {
             setAmount();
 
-        } else if (step == 3) {
+        } else if (mStep == 3) {
             setPriority();
         }
     }
 
 
     private void takeCredit() {
-        if (step == 0) {
+        if (mStep == 0) {
             this.progressBar.setMax(5);
-
 
             mDecision = new TakeCredit();
             Fragment mSecondFragment = AmountDecisionFragment.newInstance(getString(R.string.interest_rate), this);
-            this.mFragmenList.add(mSecondFragment);
+            this.mFragmentList.add(mSecondFragment);
 
             replaceChildFragment(FRAGMENT_CONTAINER, mSecondFragment);
-            this.progressBar.setProgress(++step);
+            this.progressBar.setProgress(++mStep);
 
-        } else if (step == 1) {
+        } else if (mStep == 1) {
 
-            if (((AmountDecisionFragment) mFragmenList.get(step)).isCorrect()) {
+            if (((AmountDecisionFragment) mFragmentList.get(mStep)).isCorrect()) {
 
-                ((TakeCredit) mDecision).setInterestRate(((AmountDecisionFragment) mFragmenList.get(step)).getAverage());
+                ((TakeCredit) mDecision).setInterestRate(((AmountDecisionFragment) mFragmentList.get(mStep)).getAverage());
 
                 Fragment thirdFragment = ChooseDurationFragment.newInstance(getString(R.string.credit_duration_label));
-                mFragmenList.add(thirdFragment);
+                mFragmentList.add(thirdFragment);
 
                 replaceChildFragment(FRAGMENT_CONTAINER, thirdFragment);
-                this.progressBar.setProgress(++step);
+                this.progressBar.setProgress(++mStep);
 
             } else
                 showToastMessage(getString(R.string.amount_interval_error_message));
 
-        } else if(step == 2) {
-            int duration = ((ChooseDurationFragment) mFragmenList.get(step)).getDuration();
+        } else if(mStep == 2) {
+            int duration = ((ChooseDurationFragment) mFragmentList.get(mStep)).getDuration();
             if (duration != -1) {
-                int position = ((ChooseDurationFragment) mFragmenList.get(step)).getPosition();
+                int position = ((ChooseDurationFragment) mFragmentList.get(mStep)).getPosition();
                 if(position == 1)
                     duration *= 12;
 
                 ((TakeCredit) mDecision).setCreditDuration(duration);
 
                 Fragment thirdFragment = AmountDecisionFragment.newInstance(getString(R.string.amount_fragment_title), this);
-                mFragmenList.add(thirdFragment);
+                mFragmentList.add(thirdFragment);
 
                 replaceChildFragment(FRAGMENT_CONTAINER, thirdFragment);
-                this.progressBar.setProgress(++step);
+                this.progressBar.setProgress(++mStep);
             } else {
                 showToastMessage(getString(R.string.aduration_error_message));
             }
-        } else if (step == 3) {
+        } else if (mStep == 3) {
             setAmount();
 
-        } else if (step == 4) {
+        } else if (mStep == 4) {
             setPriority();
 
         }
@@ -327,73 +300,73 @@ public class DecisionWizardFragment extends BaseFragment implements AmountDecisi
 
 
     private void openDeposit() {
-        if (step == 0) {
+        if (mStep == 0) {
             this.progressBar.setMax(6);
 
             mDecision = new OpenDeposit();
             Fragment mSecondFragment = AmountDecisionFragment.newInstance(getString(R.string.interest_rate), this);
-            this.mFragmenList.add(mSecondFragment);
+            this.mFragmentList.add(mSecondFragment);
 
             replaceChildFragment(FRAGMENT_CONTAINER, mSecondFragment);
-            this.progressBar.setProgress(++step);
+            this.progressBar.setProgress(++mStep);
 
-        } else if (step == 1) {
+        } else if (mStep == 1) {
 
-            if (((AmountDecisionFragment) mFragmenList.get(step)).isCorrect()) {
+            if (((AmountDecisionFragment) mFragmentList.get(mStep)).isCorrect()) {
 
-                ((OpenDeposit) mDecision).setInterestRate(((AmountDecisionFragment) mFragmenList.get(step)).getAverage());
+                ((OpenDeposit) mDecision).setInterestRate(((AmountDecisionFragment) mFragmentList.get(mStep)).getAverage());
 
                 Fragment fourthFragment = RadioButtonFragment.newInstance(getString(R.string.deposit_type),
                         new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.deposit_types))));
 
-                mFragmenList.add(fourthFragment);
+                mFragmentList.add(fourthFragment);
 
                 replaceChildFragment(FRAGMENT_CONTAINER, fourthFragment);
-                this.progressBar.setProgress(++step);
+                this.progressBar.setProgress(++mStep);
 
             } else
                 showToastMessage(getString(R.string.amount_interval_error_message));
 
-        }else if(step == 2){
+        }else if(mStep == 2){
 
-            int priorPos = ((RadioButtonFragment) mFragmenList.get(step)).getPosition();
+            int priorPos = ((RadioButtonFragment) mFragmentList.get(mStep)).getPosition();
             if (priorPos != -1) {
 
-                ((OpenDeposit) mDecision).setDepositType(OpenDeposit.DepositType.fromInteger(((RadioButtonFragment) mFragmenList.get(step)).getPosition()));
+                ((OpenDeposit) mDecision).setDepositType(OpenDeposit.DepositType.fromInteger(((RadioButtonFragment) mFragmentList.get(mStep)).getPosition()));
 
                 Fragment thirdFragment = ChooseDurationFragment.newInstance(getString(R.string.deposit_duration_label));
-                mFragmenList.add(thirdFragment);
+                mFragmentList.add(thirdFragment);
 
                 replaceChildFragment(FRAGMENT_CONTAINER, thirdFragment);
-                this.progressBar.setProgress(++step);
+                this.progressBar.setProgress(++mStep);
             } else {
                 showToastMessage(getString(R.string.chosen_error_message));
             }
-        } else if (step == 3) {
 
-            int duration = ((ChooseDurationFragment) mFragmenList.get(step)).getDuration();
+        } else if (mStep == 3) {
+
+            int duration = ((ChooseDurationFragment) mFragmentList.get(mStep)).getDuration();
             if (duration != -1) {
-                int position = ((ChooseDurationFragment) mFragmenList.get(step)).getPosition();
+                int position = ((ChooseDurationFragment) mFragmentList.get(mStep)).getPosition();
                 if(position == 1)
                     duration *= 12;
 
                 ((OpenDeposit) mDecision).setDepositDuration(duration);
 
                 Fragment thirdFragment = AmountDecisionFragment.newInstance(getString(R.string.amount_fragment_title), this);
-                mFragmenList.add(thirdFragment);
+                mFragmentList.add(thirdFragment);
 
                 replaceChildFragment(FRAGMENT_CONTAINER, thirdFragment);
-                this.progressBar.setProgress(++step);
+                this.progressBar.setProgress(++mStep);
             } else {
                 showToastMessage(getString(R.string.aduration_error_message));
             }
 
-        } else if (step == 4) {
+        } else if (mStep == 4) {
             setAmount();
 
-        } else if (step == 5) {
+        } else if (mStep == 5) {
             setPriority();
-
         }
     }
 
@@ -424,17 +397,15 @@ public class DecisionWizardFragment extends BaseFragment implements AmountDecisi
     @OnClick(R.id.btn_next)
     public void onNextClick() {
 
-        if (step == 0) {
+        if (mStep == 0) {
             chooseDecision();
         } else {
-            decisionByIndex(pos);
+            decisionByIndex(mPosition);
         }
     }
 
     @OnClick(R.id.btn_previous)
     public void onPreviousClick() {
-//        if (step == 3)
-//            btnNext.setText(getString(R.string.next));
         onBackPressed();
     }
 
@@ -443,21 +414,20 @@ public class DecisionWizardFragment extends BaseFragment implements AmountDecisi
         if (getChildFragmentManager().getBackStackEntryCount() > 0) {
             getChildFragmentManager().popBackStack();
             try {
-                this.mFragmenList.get(step).onDestroy();
+                this.mFragmentList.get(mStep).onDestroy();
             } catch (Exception ex) {
                 ((DecisionActivity) getActivity()).showError(ex.getMessage());
             }
             try {
-                this.mFragmenList.remove(step);
+                this.mFragmentList.remove(mStep);
             } catch (Exception ex) {
                 ((DecisionActivity) getActivity()).showError(ex.getMessage());
             }
-            progressBar.setProgress(--step);
+            progressBar.setProgress(--mStep);
 
         } else {
             getActivity().onBackPressed();
         }
-
     }
 
     @Override
@@ -469,7 +439,6 @@ public class DecisionWizardFragment extends BaseFragment implements AmountDecisi
     public void showError(String message) {
         this.showToastMessage(message);
     }
-
 
     public interface OnWizardCompleteListener {
         void onWizardComplete(Decision decision);

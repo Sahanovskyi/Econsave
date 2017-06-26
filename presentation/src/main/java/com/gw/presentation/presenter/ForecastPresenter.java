@@ -25,30 +25,30 @@ import javax.inject.Inject;
 @PerActivity
 public class ForecastPresenter implements Presenter {
 
-    private final GetPredictionList getPredictionList;
-    private final ChartDataManager chartDataManager;
-    private final TransactionsManager transactionsManager;
+    private final GetPredictionList mGetPredictionList;
+    private final ChartDataManager mChartDataManager;
+    private final TransactionsManager mTransactionsManager;
 
-    private ForecastView forecastView;
+    private ForecastView mForecastView;
 
-    private ArrayList<TransactionItem> transactionItems;
+    private ArrayList<TransactionItem> mTransactionItems;
 
-    private TreeMap<Date, Double> balancePredictionMap;
-    private TreeMap<Date, Double> incomePredictionMap;
-    private TreeMap<Date, Double> expensesPredictionMap;
-    private TreeMap<Date, Double> indexPredictionMap;
+    private TreeMap<Date, Double> mBalancePredictionMap;
+    private TreeMap<Date, Double> mIncomePredictionMap;
+    private TreeMap<Date, Double> mExpensesPredictionMap;
+    private TreeMap<Date, Double> mIndexPredictionMap;
     private Interval mInterval;
     private Period mPeriod;
-    private int gotCount = 0;
+    private int mGotCount = 0;
 
     @Inject
     public ForecastPresenter(TransactionsManager transactionsManager,
                              GetPredictionList getPredictionList,
                              ChartDataManager chartDataManager) {
 
-        this.getPredictionList = getPredictionList;
-        this.chartDataManager = chartDataManager;
-        this.transactionsManager = transactionsManager;
+        this.mGetPredictionList = getPredictionList;
+        this.mChartDataManager = chartDataManager;
+        this.mTransactionsManager = transactionsManager;
         this.mInterval = Interval.LAST_HALF_YEAR;
         this.mPeriod = Period.WEEK;
     }
@@ -64,7 +64,7 @@ public class ForecastPresenter implements Presenter {
     }
 
     public void setView(ForecastView view) {
-        this.forecastView = view;
+        this.mForecastView = view;
     }
 
     @Override
@@ -79,114 +79,114 @@ public class ForecastPresenter implements Presenter {
 
     @Override
     public void destroy() {
-        this.getPredictionList.dispose();
-        this.forecastView = null;
-        this.balancePredictionMap = null;
-        this.incomePredictionMap = null;
-        this.expensesPredictionMap = null;
-        this.indexPredictionMap = null;
-        this.transactionItems = null;
+        this.mGetPredictionList.dispose();
+        this.mForecastView = null;
+        this.mBalancePredictionMap = null;
+        this.mIncomePredictionMap = null;
+        this.mExpensesPredictionMap = null;
+        this.mIndexPredictionMap = null;
+        this.mTransactionItems = null;
     }
 
     public void initialize() {
-        if (transactionItems == null)
-            transactionItems = new ArrayList<>();
-        balancePredictionMap = new TreeMap<>();
-        incomePredictionMap = new TreeMap<>();
-        expensesPredictionMap = new TreeMap<>();
-        indexPredictionMap = new TreeMap<>();
+        if (mTransactionItems == null)
+            mTransactionItems = new ArrayList<>();
+        mBalancePredictionMap = new TreeMap<>();
+        mIncomePredictionMap = new TreeMap<>();
+        mExpensesPredictionMap = new TreeMap<>();
+        mIndexPredictionMap = new TreeMap<>();
         getPredictionLists();
     }
 
     private void showErrorMessage(ErrorBundle errorBundle) {
-        String errorMessage = ErrorMessageFactory.create(this.forecastView.context(),
+        String errorMessage = ErrorMessageFactory.create(this.mForecastView.context(),
                 errorBundle.getException());
-        this.forecastView.showError(errorMessage);
+        this.mForecastView.showError(errorMessage);
     }
 
     private void updateUI() {
-        TreeMap<Date, Double> balanceMap = transactionsManager.getBalanceMap(transactionItems, mInterval);
-        TreeMap<Date, Double> incomeMap = transactionsManager.groupIncome(transactionsManager.getIncomeMap(transactionItems, mInterval), mPeriod);
-        TreeMap<Date, Double> expensesMap = transactionsManager.groupExpenses(transactionsManager.getExpensesMap(transactionItems, mInterval), mPeriod);
+        TreeMap<Date, Double> balanceMap = mTransactionsManager.getBalanceMap(mTransactionItems, mInterval);
+        TreeMap<Date, Double> incomeMap = mTransactionsManager.groupIncome(mTransactionsManager.getIncomeMap(mTransactionItems, mInterval), mPeriod);
+        TreeMap<Date, Double> expensesMap = mTransactionsManager.groupExpenses(mTransactionsManager.getExpensesMap(mTransactionItems, mInterval), mPeriod);
 
         LineData dataBalance = new LineData(
-                chartDataManager.createPredictionLineDataSet(balancePredictionMap),
-                chartDataManager.createBalanceLineDataSet(balanceMap));
+                mChartDataManager.createPredictionLineDataSet(mBalancePredictionMap),
+                mChartDataManager.createBalanceLineDataSet(balanceMap));
 
         LineData dataIncome = new LineData(
-                chartDataManager.createPredictionLineDataSet(incomePredictionMap),
-                chartDataManager.createIncomeLineDataSet(
-                        transactionsManager.groupIncome(incomeMap, mPeriod)));
+                mChartDataManager.createPredictionLineDataSet(mIncomePredictionMap),
+                mChartDataManager.createIncomeLineDataSet(
+                        mTransactionsManager.groupIncome(incomeMap, mPeriod)));
 
         LineData dataExpenses = new LineData(
-                chartDataManager.createPredictionLineDataSet(expensesPredictionMap),
-                chartDataManager.createExpenseLineData(
-                        transactionsManager.groupExpenses(expensesMap, mPeriod)));
+                mChartDataManager.createPredictionLineDataSet(mExpensesPredictionMap),
+                mChartDataManager.createExpenseLineData(
+                        mTransactionsManager.groupExpenses(expensesMap, mPeriod)));
 
-        forecastView.updateTabChart(dataBalance, ForecastActivity.TabName.BALANCE);
-        forecastView.updateTabChart(dataIncome, ForecastActivity.TabName.INCOME);
-        forecastView.updateTabChart(dataExpenses, ForecastActivity.TabName.EXPENSES);
+        mForecastView.updateTabChart(dataBalance, ForecastActivity.TabName.BALANCE);
+        mForecastView.updateTabChart(dataIncome, ForecastActivity.TabName.INCOME);
+        mForecastView.updateTabChart(dataExpenses, ForecastActivity.TabName.EXPENSES);
 
-        double incomeCurrent = transactionsManager.getAverageIncome(incomeMap);
-        double incomeExpected = transactionsManager.getAverageIncome(incomePredictionMap);
+        double incomeCurrent = mTransactionsManager.getAverageIncome(incomeMap);
+        double incomeExpected = mTransactionsManager.getAverageIncome(mIncomePredictionMap);
 
         double balanceCurrent = balanceMap.lastEntry().getValue();
-        double balanceExpected = balancePredictionMap.lastEntry().getValue();
+        double balanceExpected = mBalancePredictionMap.lastEntry().getValue();
 
-        double expensesCurrent = transactionsManager.getAverageExpenses(expensesMap);
-        double expensesExpected = transactionsManager.getAverageExpenses(expensesPredictionMap);
-
-
-        double income_trend = (incomePredictionMap.lastEntry().getValue() - incomePredictionMap.firstEntry().getValue()) * 100 / incomePredictionMap.firstEntry().getValue();
-        double balance_trend = (balancePredictionMap.lastEntry().getValue() - balancePredictionMap.firstEntry().getValue()) * 100 / balancePredictionMap.firstEntry().getValue();
-        double expenses_trend = (expensesPredictionMap.lastEntry().getValue() - expensesPredictionMap.firstEntry().getValue()) * 100 / expensesPredictionMap.firstEntry().getValue();
+        double expensesCurrent = mTransactionsManager.getAverageExpenses(expensesMap);
+        double expensesExpected = mTransactionsManager.getAverageExpenses(mExpensesPredictionMap);
 
 
-        forecastView.updateTabData(incomeCurrent, incomeExpected, income_trend, forecastView.context().getString(R.string.tip_entertainment), ForecastActivity.TabName.INCOME);
-        forecastView.updateTabData(balanceCurrent, balanceExpected, balance_trend, forecastView.context().getString(R.string.tip_entertainment), ForecastActivity.TabName.BALANCE);
-        forecastView.updateTabData(expensesCurrent, expensesExpected, expenses_trend, forecastView.context().getString(R.string.tip_entertainment), ForecastActivity.TabName.EXPENSES);
-   //     forecastView.updateTabData(,,, ForecastActivity.TabName.INDEX);
+        double income_trend = (mIncomePredictionMap.lastEntry().getValue() - mIncomePredictionMap.firstEntry().getValue()) * 100 / mIncomePredictionMap.firstEntry().getValue();
+        double balance_trend = (mBalancePredictionMap.lastEntry().getValue() - mBalancePredictionMap.firstEntry().getValue()) * 100 / mBalancePredictionMap.firstEntry().getValue();
+        double expenses_trend = (mExpensesPredictionMap.lastEntry().getValue() - mExpensesPredictionMap.firstEntry().getValue()) * 100 / mExpensesPredictionMap.firstEntry().getValue();
+
+
+        mForecastView.updateTabData(incomeCurrent, incomeExpected, income_trend, mForecastView.context().getString(R.string.tip_entertainment), ForecastActivity.TabName.INCOME);
+        mForecastView.updateTabData(balanceCurrent, balanceExpected, balance_trend, mForecastView.context().getString(R.string.tip_entertainment), ForecastActivity.TabName.BALANCE);
+        mForecastView.updateTabData(expensesCurrent, expensesExpected, expenses_trend, mForecastView.context().getString(R.string.tip_entertainment), ForecastActivity.TabName.EXPENSES);
+   //     mForecastView.updateTabData(,,, ForecastActivity.TabName.INDEX);
     }
 
-    public void setTransactionItems(ArrayList<TransactionItem> transactionItems) {
-        this.transactionItems = transactionItems;
+    public void setmTransactionItems(ArrayList<TransactionItem> mTransactionItems) {
+        this.mTransactionItems = mTransactionItems;
     }
 //
 //    private void getTransactionHistory() {
 //
-//        forecastView.showProgressDialog();
+//        mForecastView.showProgressDialog();
 //        User user = new User("Olya", "Sahanovska", "vad.sagan@ukr.net",
 //                new PrivatBankClient("4149497820710905", 127246, "fBE6F19MGT2KgxqPQT5fMvhd3pO3yqNH"));
 //
-//   //     this.forecastView.showToastMessage("Getting data...");
+//   //     this.mForecastView.showToastMessage("Getting data...");
 //   //     this.getPrivatBankTransactionList.execute(new ForecastPresenter.TransactionListObserver("PrivatBank"), user.getPrivatBankClient());
 //     //   this.getSmsTransactionList.execute(new TransactionListObserver("Ukrsotsbank"), "Ukrsotsbank");
 //    }
 
     private void getPredictionLists() {
-        if (transactionItems != null) {
-      //      this.forecastView.showProgressDialog();
-            this.gotCount = 0;
+        if (mTransactionItems != null) {
+      //      this.mForecastView.showProgressDialog();
+            this.mGotCount = 0;
             Date start = new Date();
             Date end = TransactionsManager.getEndDate(mInterval);
 
 
-            this.getPredictionList.execute(
-                    new ForecastPresenter.PredictionListObserver(balancePredictionMap),
+            this.mGetPredictionList.execute(
+                    new ForecastPresenter.PredictionListObserver(mBalancePredictionMap),
                     GetPredictionList.Params.predictParams(
-                            this.transactionsManager.getBalanceMap(transactionItems, mInterval), start, end));
+                            this.mTransactionsManager.getBalanceMap(mTransactionItems, mInterval), start, end));
 
-            this.getPredictionList.execute(
-                    new ForecastPresenter.PredictionListObserver(incomePredictionMap),
+            this.mGetPredictionList.execute(
+                    new ForecastPresenter.PredictionListObserver(mIncomePredictionMap),
                     GetPredictionList.Params.predictParams(
-                            this.transactionsManager.groupIncome(
-                            this.transactionsManager.getIncomeMap(transactionItems, mInterval), mPeriod),  start, end));
+                            this.mTransactionsManager.groupIncome(
+                            this.mTransactionsManager.getIncomeMap(mTransactionItems, mInterval), mPeriod),  start, end));
 
-            this.getPredictionList.execute(
-                    new ForecastPresenter.PredictionListObserver(expensesPredictionMap),
+            this.mGetPredictionList.execute(
+                    new ForecastPresenter.PredictionListObserver(mExpensesPredictionMap),
                     GetPredictionList.Params.predictParams(
-                            this.transactionsManager.groupExpenses(
-                            this.transactionsManager.getExpensesMap(transactionItems, mInterval), mPeriod),  start, end));
+                            this.mTransactionsManager.groupExpenses(
+                            this.mTransactionsManager.getExpensesMap(mTransactionItems, mInterval), mPeriod),  start, end));
 //
 //        this.getPredictionLists.execute(
 //                new ForecastPresenter.PredictionListObserver(),
@@ -204,18 +204,18 @@ public class ForecastPresenter implements Presenter {
 
         @Override
         public void onComplete() {
-            //       ForecastPresenter.this.forecastView.showToastMessage("Got prediction history!");
-            if (++gotCount == 3) {
+            //       ForecastPresenter.this.mForecastView.showToastMessage("Got prediction history!");
+            if (++mGotCount == 3) {
                 updateUI();
-                gotCount = 0;
-                ForecastPresenter.this.forecastView.hideProgressDialog();
+                mGotCount = 0;
+                ForecastPresenter.this.mForecastView.hideProgressDialog();
             }
         }
 
         @Override
         public void onError(Throwable e) {
             ForecastPresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
-            ForecastPresenter.this.forecastView.hideProgressDialog();
+            ForecastPresenter.this.mForecastView.hideProgressDialog();
         }
 
         @Override
@@ -234,7 +234,7 @@ public class ForecastPresenter implements Presenter {
 //
 //        @Override
 //        public void onComplete() {
-//            ForecastPresenter.this.forecastView.showToastMessage("Got transaction history!");
+//            ForecastPresenter.this.mForecastView.showToastMessage("Got transaction history!");
 //            getPredictionLists();
 //
 //        }
@@ -242,13 +242,13 @@ public class ForecastPresenter implements Presenter {
 //        @Override
 //        public void onError(Throwable e) {
 //            ForecastPresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
-//            ForecastPresenter.this.forecastView.hideProgressDialog();
+//            ForecastPresenter.this.mForecastView.hideProgressDialog();
 //        }
 //
 //        @Override
-//        public void onNext(List<TransactionItem> transactionItems) {
-//            ForecastPresenter.this.transactionItems.clear();
-//            ForecastPresenter.this.transactionItems.addAll(transactionItems);
+//        public void onNext(List<TransactionItem> mTransactionItems) {
+//            ForecastPresenter.this.mTransactionItems.clear();
+//            ForecastPresenter.this.mTransactionItems.addAll(mTransactionItems);
 //
 //        }
 //    }

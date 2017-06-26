@@ -48,20 +48,6 @@ public class ForecastActivity extends BaseActivity implements ForecastView {
     private int mDateRangeItemSelected = 2;
     private int mGroupItemSelected = 2;
 
-//    private AdapterView.OnItemSelectedListener mOnSpinnerItemSelectedListener = new AdapterView.OnItemSelectedListener() {
-//        @Override
-//        public void onItemSelected(AdapterView<?> parent, View view,
-//                                   int position, long id) {
-//
-//            Interval interval = Interval.fromInteger((int) (id + 1));
-//
-//            presenter.changePredictionInterval(interval);
-//        }
-//
-//        @Override
-//        public void onNothingSelected(AdapterView<?> arg0) {
-//        }
-//    };
 
     public static Intent getCallingIntent(Context context) {
         return new Intent(context, ForecastActivity.class);
@@ -134,8 +120,6 @@ public class ForecastActivity extends BaseActivity implements ForecastView {
         builder.show();
     }
 
-
-
     private void setupToolbar() {
         setSupportActionBar(toolbar);
         try {
@@ -148,7 +132,7 @@ public class ForecastActivity extends BaseActivity implements ForecastView {
     private void setupPresenter() {
         presenter.setView(this);
         try {
-            presenter.setTransactionItems((ArrayList<TransactionItem>) getIntent().getSerializableExtra(ARG_TRANSACTION_ITEMS_LIST));
+            presenter.setmTransactionItems((ArrayList<TransactionItem>) getIntent().getSerializableExtra(ARG_TRANSACTION_ITEMS_LIST));
             presenter.initialize();
         } catch (Exception ex) {
             showError(ex.getMessage());
@@ -160,7 +144,7 @@ public class ForecastActivity extends BaseActivity implements ForecastView {
         mSectionsPagerAdapter.addFragment(ForecastPlaceholderFragment.newInstance(TabName.INCOME), getString(R.string.income_label));
         mSectionsPagerAdapter.addFragment(ForecastPlaceholderFragment.newInstance(TabName.BALANCE), getString(R.string.balance_label));
         mSectionsPagerAdapter.addFragment(ForecastPlaceholderFragment.newInstance(TabName.EXPENSES), getString(R.string.expenses_label));
-        mSectionsPagerAdapter.addFragment(ForecastPlaceholderFragment.newInstance(TabName.INDEX), getString(R.string.index_label));
+  //      mSectionsPagerAdapter.addFragment(ForecastPlaceholderFragment.newInstance(TabName.INDEX), getString(R.string.index_label));
 
         viewPager.setAdapter(mSectionsPagerAdapter);
         viewPager.setCurrentItem(1);

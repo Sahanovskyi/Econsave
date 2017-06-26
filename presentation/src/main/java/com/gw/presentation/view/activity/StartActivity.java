@@ -1,13 +1,11 @@
 package com.gw.presentation.view.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.gw.presentation.R;
 import com.gw.presentation.internal.di.component.AuthComponent;
-import com.gw.presentation.internal.di.component.DaggerActivityComponent;
 
 public class StartActivity extends BaseActivity {
 

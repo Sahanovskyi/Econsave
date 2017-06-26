@@ -7,6 +7,7 @@ import java.util.TreeMap;
 
 
 public class TakeCredit extends Decision{
+
     private int mCreditDuration;
     private double mInterestRate;
 
@@ -28,8 +29,8 @@ public class TakeCredit extends Decision{
     }
 
     private double calculateMonthlyPayment(){
-        final double monthlyInterestRate = mInterestRate/12/100;
-        final double denominator = Math.pow(1 + monthlyInterestRate, mCreditDuration) - 1;
+        double monthlyInterestRate = mInterestRate/12/100;
+        double denominator = Math.pow(1 + monthlyInterestRate, mCreditDuration) - 1;
         double monthlyPayment = getAmount() * (monthlyInterestRate + (monthlyInterestRate / denominator));
 
         return monthlyPayment;

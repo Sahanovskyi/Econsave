@@ -12,10 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.gw.domain.model.TransactionItem;
-import com.gw.domain.model.decision.BuyAsset;
 import com.gw.domain.model.decision.Decision;
-import com.gw.domain.model.decision.SellAsset;
-import com.gw.domain.model.decision.TakeCredit;
 import com.gw.presentation.R;
 import com.gw.presentation.internal.di.HasComponent;
 import com.gw.presentation.internal.di.component.DaggerDecisionComponent;
@@ -40,7 +37,6 @@ public class DecisionActivity extends BaseActivity implements com.gw.presentatio
     private BaseFragment mFragment;
 
     private DecisionComponent mDecisionComponent;
-
 
     private MenuItem mSearchMenuItem;
     private SearchView mSearchView;

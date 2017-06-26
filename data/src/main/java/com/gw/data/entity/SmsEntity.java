@@ -1,28 +1,25 @@
 package com.gw.data.entity;
 
-/**
- * Created by vadym on 30.04.17.
- */
 
 public class SmsEntity {
     // Number from witch the sms was send
-    private String number;
+    private String mNumber;
     // SMS text body
-    private String body;
+    private String mBody;
 
     public String getNumber() {
-        return number;
+        return mNumber;
     }
 
     public void setNumber(String number) {
-        this.number = number;
+        this.mNumber = number;
     }
 
     public String getBody() {
-        return body;
+        return mBody;
     }
 
     public void setBody(String body) {
-        this.body = body;
+        this.mBody = body;
     }
 }

@@ -2,18 +2,16 @@ package com.gw.presentation.view.fragment;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.app.ProgressDialog;
 import android.widget.Toast;
 
 import com.gw.presentation.R;
 import com.gw.presentation.internal.di.HasComponent;
+import com.gw.presentation.view.activity.BaseActivity;
 
 /**
  * Base {@link android.app.Fragment} class for every fragment in this application.
  */
 public abstract class BaseFragment extends android.app.Fragment {
-
-
 
     protected void replaceChildFragment(int containerViewId, Fragment fragment) {
         final FragmentTransaction fragmentTransaction = this.getChildFragmentManager().beginTransaction();
@@ -30,22 +28,13 @@ public abstract class BaseFragment extends android.app.Fragment {
         fragmentTransaction.commit();
     }
 
-    public ProgressDialog mProgressDialog;
 
     public void showProgressDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(getActivity());
-            mProgressDialog.setMessage("Loading...");
-            mProgressDialog.setIndeterminate(true);
-        }
-
-        mProgressDialog.show();
+        ((BaseActivity)getActivity()).showProgressDialog();
     }
 
     public void hideProgressDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
+        ((BaseActivity)getActivity()).hideProgressDialog();
     }
 
     /**
@@ -55,6 +44,10 @@ public abstract class BaseFragment extends android.app.Fragment {
      */
     public void showToastMessage(String message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void showError(String message) {
+        this.showToastMessage(message);
     }
 
     public void onBackPressed(){}

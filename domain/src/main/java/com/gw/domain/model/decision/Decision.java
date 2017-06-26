@@ -4,11 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.TreeMap;
 
-/**
- * Created by vadym on 17.05.17.
- */
-
 public abstract class Decision implements Serializable{
+
     private double mAmount;
     private Priority mPriority;
 

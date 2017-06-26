@@ -23,19 +23,19 @@ import javax.inject.Inject;
 @PerActivity
 public class DecisionListPresenter implements Presenter {
 
-    private DecisionListView decisionListView;
+    private DecisionListView mDecisionListView;
 
-    private GetDecisionList getDecisionList;
-    private DecisionModelDataMapper decisionModelDataMapper;
+    private GetDecisionList mGetDecisionList;
+    private DecisionModelDataMapper mDecisionModelDataMapper;
 
     @Inject
     public DecisionListPresenter(GetDecisionList getDecisionList, DecisionModelDataMapper decisionModelDataMapper) {
-        this.getDecisionList = getDecisionList;
-        this.decisionModelDataMapper = decisionModelDataMapper;
+        this.mGetDecisionList = getDecisionList;
+        this.mDecisionModelDataMapper = decisionModelDataMapper;
     }
 
     public void setView(DecisionListView decisionListView){
-        this.decisionListView = decisionListView;
+        this.mDecisionListView = decisionListView;
     }
     @Override
     public void resume() {
@@ -48,13 +48,13 @@ public class DecisionListPresenter implements Presenter {
 
     @Override
     public void destroy() {
-        this.getDecisionList.dispose();
-        this.decisionListView = null;
+        this.mGetDecisionList.dispose();
+        this.mDecisionListView = null;
 
     }
 
     public void onDecisionClicked(DecisionModel decisionModel) {
-     //   this.decisionListView.viewDecision(decisionModel);
+     //   this.mDecisionListView.viewDecision(decisionModel);
     }
 
     /**
@@ -72,20 +72,20 @@ public class DecisionListPresenter implements Presenter {
 
 
     private void showErrorMessage(ErrorBundle errorBundle) {
-        String errorMessage = ErrorMessageFactory.create(this.decisionListView.context(),
+        String errorMessage = ErrorMessageFactory.create(this.mDecisionListView.context(),
                 errorBundle.getException());
-        this.decisionListView.showError(errorMessage);
+        this.mDecisionListView.showError(errorMessage);
     }
 
     private void showDecisionsCollectionInView(Collection<DecisionItem> decisionsCollection) {
          Collection<DecisionModel> decisionModelsCollection =
-                this.decisionModelDataMapper.transform(decisionsCollection);
+                this.mDecisionModelDataMapper.transform(decisionsCollection);
         Collections.sort((List<DecisionModel>)decisionModelsCollection);
-        this.decisionListView.renderDecisionList(decisionModelsCollection);
+        this.mDecisionListView.renderDecisionList(decisionModelsCollection);
     }
 
     private void getDecisionList() {
-        this.getDecisionList.execute(new DecisionListObserver(), null);
+        this.mGetDecisionList.execute(new DecisionListObserver(), null);
         
     }
 

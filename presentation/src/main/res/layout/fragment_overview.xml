@@ -1,17 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.gw.presentation.view.activity.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    tools:context="com.gw.presentation.view.fragment.OverviewFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -119,7 +112,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="5"
                     android:gravity="center_vertical"
-                    android:text="6.1/10"
+                    android:text="3.1/10"
                     android:textAlignment="center"
                     android:textSize="32sp"
                     android:textStyle="bold" />
@@ -294,5 +287,3 @@
     </LinearLayout>
 
 </RelativeLayout>
-
-    <!--</LinearLayout>-->

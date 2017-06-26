@@ -1,28 +1,26 @@
 package com.gw.domain.model.PrivatBank;
 
 public class PrivatBankClient {
-    private int merchantId ;
-    private String cardNumber ;
-    private String merchantPassword ;
+    private int mMerchantId;
+    private String mCardNumber;
+    private String mMerchantPassword;
 
 
     public PrivatBankClient(String cardNumber, int merchantId, String merchantPassword) {
-        this.cardNumber = cardNumber;
-        this.merchantId = merchantId;
-        this.merchantPassword = merchantPassword;
+        this.mCardNumber = cardNumber;
+        this.mMerchantId = merchantId;
+        this.mMerchantPassword = merchantPassword;
     }
 
-    public PrivatBankClient(){}
-
     public int getMerchantId() {
-        return merchantId;
+        return mMerchantId;
     }
 
     public String getCardNumber() {
-        return cardNumber;
+        return mCardNumber;
     }
 
     public String getMerchantPassword() {
-        return merchantPassword;
+        return mMerchantPassword;
     }
 }

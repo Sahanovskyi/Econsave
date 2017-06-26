@@ -45,14 +45,12 @@ public class DataRepository implements Repository {
     public Observable<List<TransactionItem>> getPrivatBankTransactionItems(PrivatBankClient client) {
         final DataStore dataStore = this.dataStoreFactory.createCloudDataStore(client);
         return dataStore.transactionItemEntityList().map(this.transactionItemEntityDataMapper::transform);
-
     }
 
     @Override
     public Observable<List<TransactionItem>> getSmsTransactionItems(String number) {
         final DataStore dataStore = this.dataStoreFactory.createSMSDataStore(number);
         return dataStore.transactionItemEntityList().map(this.transactionItemEntityDataMapper::transform);
-
     }
 
     @Override
@@ -72,7 +70,6 @@ public class DataRepository implements Repository {
             decisionEntityList.add(new DecisionEntity(9, "Купити побутову техніку", new String[]{"покупка", "техніка", "побут"}));
             decisionEntityList.add(new DecisionEntity(10, "Купити телефон", new String[]{"покупка", "електроніка", "телефон"}));
             decisionEntityList.add(new DecisionEntity(11, "Прдати оутбук", new String[]{"продаж", "електроніка", "ноутбук"}));
-
 
 
             if (decisionEntityList != null) {

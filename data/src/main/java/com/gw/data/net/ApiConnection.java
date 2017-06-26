@@ -8,22 +8,11 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
-
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.ParseException;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
-
-import javax.net.ssl.HttpsURLConnection;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 /**
  * Api Connection class used to retrieve communicate with the server.
@@ -52,42 +41,13 @@ class ApiConnection implements Callable<String> {
      * Do a request to an api synchronously.
      * It should not be executed in the main thread of the application.
      *
-     * @return A Document response
+     * @return A String response
      */
     @Nullable
     String requestSyncCall() {
         connectToApi();
         return response;
     }
-//
-//    private void connectToApi() {
-//        try {
-//            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-//            connection.setDoOutput(true);
-//            connection.setDoInput(true);
-//            connection.setInstanceFollowRedirects(false);
-//            connection.setRequestMethod("POST");
-//            connection.setRequestProperty(CONTENT_TYPE_LABEL, CONTENT_TYPE_VALUE_XML);
-//
-//            OutputStream os = connection.getOutputStream();
-//            os.write(request.getBytes());
-//            os.flush();
-//            os.close();
-//            InputStream is = connection.getInputStream();
-//
-//            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-//            DocumentBuilder db = dbf.newDocumentBuilder();
-//
-//            response = db.parse(is);
-//            is.close();
-//        }catch (IOException e){
-//            e.printStackTrace();
-//        }catch (SAXException e){
-//            e.printStackTrace();
-//        }catch (ParserConfigurationException e){
-//            e.printStackTrace();
-//        }
-//    }
 
 
     private void connectToApi() {

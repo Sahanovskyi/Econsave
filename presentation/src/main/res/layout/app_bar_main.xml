@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.gw.presentation.view.activity.MainActivity"
     android:fitsSystemWindows="false"
 
     >
 
     <android.support.design.widget.AppBarLayout
-        android:fitsSystemWindows="true"
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay"
-        app:layout_collapseMode="pin"
 
-        >
+        app:layout_collapseMode="pin">
 
 
         <android.support.v7.widget.Toolbar
@@ -30,8 +32,13 @@
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/main_fragment_container">
 
-    <include layout="@layout/content_main" />
+    </FrameLayout>
+
 
     <!--<android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -41,4 +48,4 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 -->
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

@@ -9,7 +9,7 @@ import android.view.View;
 
 public class SmoothActionBarDrawerToggle extends ActionBarDrawerToggle {
 
-    private Runnable runnable;
+    private Runnable mRunnable;
     private Activity mActivity;
 
     public SmoothActionBarDrawerToggle(Activity activity, DrawerLayout drawerLayout, Toolbar toolbar, int openDrawerContentDescRes, int closeDrawerContentDescRes) {
@@ -30,13 +30,13 @@ public class SmoothActionBarDrawerToggle extends ActionBarDrawerToggle {
     @Override
     public void onDrawerStateChanged(int newState) {
         super.onDrawerStateChanged(newState);
-        if (runnable != null && newState == DrawerLayout.STATE_IDLE) {
-            runnable.run();
-            runnable = null;
+        if (mRunnable != null && newState == DrawerLayout.STATE_IDLE) {
+            mRunnable.run();
+            mRunnable = null;
         }
     }
 
     public void runWhenIdle(Runnable runnable) {
-        this.runnable = runnable;
+        this.mRunnable = runnable;
     }
 }

@@ -4,11 +4,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TreeMap;
 
-/**
- * Created by vadym on 02.05.17.
- */
-
 public class OpenDeposit extends Decision {
+
     private int mDepositDuration;
     private double mInterestRate;
     private DepositType mDepositType;

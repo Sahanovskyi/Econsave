@@ -15,7 +15,7 @@ import com.gw.presentation.exception.ErrorMessageFactory;
 import com.gw.presentation.internal.di.PerActivity;
 import com.gw.presentation.mapper.TransactionItemModelMapper;
 import com.gw.presentation.presenter.helper.ChartDataManager;
-import com.gw.presentation.view.MainView;
+import com.gw.presentation.view.OverviewView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +27,7 @@ import javax.inject.Inject;
 
 @PerActivity
 public class MainPresenter implements Presenter {
+
     private final static double MIN_SALARY = 1700;
     private final static double AVERAGE_SALARY = 6200;
     private final GetPrivatBankTransactionList mGetPrivatBankTransactionList;
@@ -34,13 +35,12 @@ public class MainPresenter implements Presenter {
     private final TransactionsManager mTransactionsManager;
     private ChartDataManager mChartDataManager;
     private TransactionItemModelMapper mTransactionItemModelMapper;
-    private MainView mMainView;
+    private OverviewView mOverviewView;
     private User mUser;
     private Map<String, List<TransactionItem>> mTransactionMap;
     private Interval mInterval = Interval.LAST_QUARTER;
 
     private String mTransactionSource = "PrivatBank";
-
 
     @Inject
     MainPresenter(TransactionItemModelMapper mTransactionItemModelMapper, TransactionsManager mTransactionsManager, GetPrivatBankTransactionList mGetPrivatBankTransactionList, GetSmsTransactionList mGetSmsTransactionList, ChartDataManager mChartDataManager) {
@@ -64,20 +64,20 @@ public class MainPresenter implements Presenter {
     private void updateUI(){
         if (mTransactionMap != null && mTransactionMap.size() != 0) {
             try {
-                mMainView.setChartData(new LineData(
+                mOverviewView.setChartData(new LineData(
                         mChartDataManager.createBalanceLineDataSet(
                                 mTransactionsManager.getBalanceMap(
                                         mTransactionMap.get(mTransactionSource), mInterval))));
 
-                mMainView.setBalance(String.format(Locale.getDefault(), "%.2f", mTransactionsManager.getBalance(mTransactionMap.get(mTransactionSource), mInterval)));
-                mMainView.setIncome(String.format(Locale.getDefault(), "%.2f", mTransactionsManager.getIncome(mTransactionMap.get(mTransactionSource), mInterval)));
-                mMainView.setExpense(String.format(Locale.getDefault(), "%.2f", mTransactionsManager.getExpenses(mTransactionMap.get(mTransactionSource), mInterval)));
+                mOverviewView.setBalance(String.format(Locale.getDefault(), "%.2f", mTransactionsManager.getBalance(mTransactionMap.get(mTransactionSource), mInterval)));
+                mOverviewView.setIncome(String.format(Locale.getDefault(), "%.2f", mTransactionsManager.getIncome(mTransactionMap.get(mTransactionSource), mInterval)));
+                mOverviewView.setExpense(String.format(Locale.getDefault(), "%.2f", mTransactionsManager.getExpenses(mTransactionMap.get(mTransactionSource), mInterval)));
 
             } catch (NullPointerException ex) {
-                mMainView.showError("Change chart mInterval");
+                mOverviewView.showError("Change chart mInterval");
             }
         } else {
-            mMainView.showError("Haven't got transaction history yet");
+            mOverviewView.showError("Haven't got transaction history yet");
         }
     }
 
@@ -87,25 +87,21 @@ public class MainPresenter implements Presenter {
 
     }
 
-    public void setView(MainView view) {
-        this.mMainView = view;
+    public void setView(OverviewView view) {
+        this.mOverviewView = view;
     }
 
     public void logOut() {
     }
 
+    //Initialize presenter
     public void initialize() {
         mTransactionMap = new HashMap<>();
 
-        mUser = new User("Olya", "Sahanovska", "vad.sagan@ukr.net",
-                new PrivatBankClient("4149497820710905", 127246, "fBE6F19MGT2KgxqPQT5fMvhd3pO3yqNH"));
-
-//        mUser = new User("Vova", "Toporovich", "vad.sagan@ukr.net",
-//                new PrivatBankClient("5457082236999137", 127292, "39BFq2S557O9JdUOE5tSX1002XpSiT9i"));
-
-//        mUser = new User("Vadym", "Sahanovskyi", "vad.sagan@ukr.net",
-//                new PrivatBankClient("4149497833163035", 126946, "98YoD4ua3woAE3Z2R0N95XTdexKuXkEw"));
-
+        //Initialize user
+        //See registration merchant instruction here https://api.privatbank.ua/#p24/registration
+        mUser = new User("Vadym", "Sahanovskyi", "vad.sagan@ukr.net",
+                new PrivatBankClient("1111111111111111", 1111, "1111"));
 
         getTransactionHistory();
     }
@@ -124,19 +120,17 @@ public class MainPresenter implements Presenter {
     public void destroy() {
         this.mGetPrivatBankTransactionList.dispose();
         this.mGetSmsTransactionList.dispose();
-        this.mMainView = null;
-//        this.mTransactionMap.clear();
+        this.mOverviewView = null;
         this.mTransactionMap = null;
     }
 
     private void showErrorMessage(ErrorBundle errorBundle) {
-        String errorMessage = ErrorMessageFactory.create(this.mMainView.context(),
+        String errorMessage = ErrorMessageFactory.create(this.mOverviewView.context(),
                 errorBundle.getException());
-        this.mMainView.showError(errorMessage);
+        this.mOverviewView.showError(errorMessage);
     }
 
     private void getTransactionHistory() {
-        //      this.mMainView.showToastMessage("Getting data...");
         this.mGetPrivatBankTransactionList.execute(new TransactionListObserver(mTransactionSource), mUser.getPrivatBankClient());
         //     this.mGetSmsTransactionList.execute(new TransactionListObserver("Ukrsotsbank"), "Ukrsotsbank");
     }
@@ -151,7 +145,7 @@ public class MainPresenter implements Presenter {
 
         @Override
         public void onComplete() {
-            MainPresenter.this.mMainView.showToastMessage("Got data!");
+            MainPresenter.this.mOverviewView.showToastMessage("Got data!");
             updateUI();
         }
 

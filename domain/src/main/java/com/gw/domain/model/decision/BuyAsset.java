@@ -1,17 +1,11 @@
 package com.gw.domain.model.decision;
 
-import com.gw.domain.model.Interval;
-import com.sun.org.apache.regexp.internal.RE;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TreeMap;
 
-/**
- * Created by vadym on 02.05.17.
- */
-
 public class BuyAsset extends Decision{
+
     private AssetType mAssetType;
 
     public AssetType getAssetType() {

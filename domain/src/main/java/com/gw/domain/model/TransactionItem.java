@@ -6,61 +6,61 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class TransactionItem implements Comparable<TransactionItem>, Serializable{
-    private String description;
-    private double amount;
-    private double balance;
-    private final Date date;
-    private String currency;
-    private Category category;
+    private String mDescription;
+    private double mAmount;
+    private double mBalance;
+    private final Date mDate;
+    private String mCurrency;
+    private Category mCategory;
 
 
     public TransactionItem(Date date, double amount) {
-        this.amount = amount;
-        this.date = date;
+        this.mAmount = amount;
+        this.mDate = date;
     }
 
     public String getDescription() {
-        return description;
+        return mDescription;
     }
 
     public double getAmount() {
-        return amount;
+        return mAmount;
     }
 
     public double getBalance() {
-        return balance;
+        return mBalance;
     }
 
     public Date getDate() {
-        return date;
+        return mDate;
     }
 
     public String getCurrency() {
-        return currency;
+        return mCurrency;
     }
 
     public Category getCategory() {
-        return category;
+        return mCategory;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.mDescription = description;
     }
 
     public void setAmount(double amount) {
-        this.amount = amount;
+        this.mAmount = amount;
     }
 
     public void setBalance(double balance) {
-        this.balance = balance;
+        this.mBalance = balance;
     }
 
     public void setCurrency(String currency) {
-        this.currency = currency;
+        this.mCurrency = currency;
     }
 
     public void setCategory(Category category) {
-        this.category = category;
+        this.mCategory = category;
     }
 
 

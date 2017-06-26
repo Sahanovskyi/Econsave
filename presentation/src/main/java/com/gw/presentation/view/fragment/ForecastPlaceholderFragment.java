@@ -41,6 +41,7 @@ public class ForecastPlaceholderFragment extends Fragment {
     private static final String ARG_TREND = "trend value";
     private static final String ARG_CURRENCY = "currency";
     private static final String ARG_TIP = "tip text";
+
     @BindView(R.id.forecast_chart)
     LineChart chart;
     @BindView(R.id.forecast_tab_name)
@@ -71,7 +72,6 @@ public class ForecastPlaceholderFragment extends Fragment {
     private Bundle mSavedState = null;
     private ForecastActivity.TabName mTabName;
 
-
     public ForecastPlaceholderFragment() {
     }
 
@@ -81,9 +81,11 @@ public class ForecastPlaceholderFragment extends Fragment {
      */
     public static ForecastPlaceholderFragment newInstance(ForecastActivity.TabName tabName) {
         ForecastPlaceholderFragment fragment = new ForecastPlaceholderFragment();
+
         Bundle args = new Bundle();
         args.putSerializable(TAB_SECTION_NAME, tabName);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -109,8 +111,8 @@ public class ForecastPlaceholderFragment extends Fragment {
             restoreData(mSavedState);
         }
 
-
         initChart();
+
         if (mLineData != null) {
             chart.setData(mLineData);
             chart.animateY(700);
@@ -123,6 +125,7 @@ public class ForecastPlaceholderFragment extends Fragment {
         String strLabelCurrent;
         String strLabelExpected;
         int color;
+
         switch (tabName) {
             case BALANCE:
                 strTabName = getString(R.string.balance_label);
@@ -130,32 +133,35 @@ public class ForecastPlaceholderFragment extends Fragment {
                 strLabelExpected = getString(R.string.expected_balance);
                 color = getResources().getColor(R.color.blueTextColor);
                 break;
+
             case INCOME:
                 strTabName = getString(R.string.income_label);
                 strLabelCurrent = getString(R.string.current_average_income);
                 strLabelExpected = getString(R.string.expected_average_income);
                 color = getResources().getColor(R.color.greenTextColor);
                 break;
+
             case EXPENSES:
                 strTabName = getString(R.string.expenses_label);
                 strLabelCurrent = getString(R.string.current_average_expenses);
                 strLabelExpected = getString(R.string.expected_average_expenses);
                 color = getResources().getColor(R.color.redTextColor);
-
                 break;
+
             case INDEX:
                 strTabName = getString(R.string.index_label);
                 strLabelCurrent = getString(R.string.current_balance);
                 strLabelExpected = getString(R.string.expected_balance);
                 color = getResources().getColor(R.color.gray);
-
                 break;
+
             default:
                 strTabName = getString(R.string.balance_label);
                 strLabelCurrent = getString(R.string.current_balance);
                 strLabelExpected = getString(R.string.expected_balance);
                 color = getResources().getColor(R.color.blueTextColor);
         }
+
         tvTabName.setText(strTabName);
         tvTabName.setTextColor(color);
         tvLabelCurrent.setText(strLabelCurrent);
@@ -168,15 +174,16 @@ public class ForecastPlaceholderFragment extends Fragment {
         try {
             mSavedState.putDouble(ARG_CURRENT, Double.parseDouble(tvCurrent.getText().toString()));
             mSavedState.putDouble(ARG_EXPECTED, Double.parseDouble(tvExpected.getText().toString()));
+
             String trend = tvTrend.getText().toString();
             trend = trend.replaceAll("%", "");
             trend = trend.replace(',', '.');
+
             mSavedState.putDouble(ARG_TREND, Double.parseDouble(trend));
             mSavedState.putString(ARG_TIP, tvTip.getText().toString());
-        } catch (Exception ex) {
-            Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_LONG).show();
         }
-        finally {
+        catch (Exception ex) {
+            Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -185,8 +192,6 @@ public class ForecastPlaceholderFragment extends Fragment {
         saveState();
         super.onDestroyView();
     }
-
-
 
     private void restoreData(Bundle savedBundle) {
         double current = savedBundle.getDouble(ARG_CURRENT);
@@ -274,11 +279,12 @@ public class ForecastPlaceholderFragment extends Fragment {
 
     public void setTrend(double trend){
         tvTrend.setText(String.format(Locale.getDefault(), "%+2.2f%%", trend));
+
         int green = getActivity().getResources().getColor(R.color.green_arrow);
         int red = getActivity().getResources().getColor(R.color.red_arrow);
+
         Drawable upGreen = getActivity().getResources().getDrawable(R.drawable.ic_arrow_up_green);
         Drawable downRed = getActivity().getResources().getDrawable(R.drawable.ic_arrow_down_red);
-
         Drawable upRed = getActivity().getResources().getDrawable(R.drawable.ic_arrow_up_red);
         Drawable downGreen = getActivity().getResources().getDrawable(R.drawable.ic_arrow_down_green);
 
@@ -308,6 +314,5 @@ public class ForecastPlaceholderFragment extends Fragment {
             }
         }
     }
-
 
 }

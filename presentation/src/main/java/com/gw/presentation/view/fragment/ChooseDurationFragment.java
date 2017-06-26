@@ -1,8 +1,6 @@
 package com.gw.presentation.view.fragment;
 
 import android.os.Bundle;
-import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +9,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.gw.domain.exception.IntervalAmountException;
 import com.gw.presentation.R;
 
 import butterknife.BindView;
@@ -50,7 +47,6 @@ public class ChooseDurationFragment extends BaseFragment {
         if(getArguments() != null){
             mTitle = getArguments().getString(ARG_TITLE);
         }
-
     }
 
     @Override
