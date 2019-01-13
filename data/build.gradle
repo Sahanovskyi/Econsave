@@ -8,7 +8,7 @@ buildscript {
 }
 
 apply plugin: 'com.android.library'
-apply plugin: 'com.neenbedankt.android-apt'
+//apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
@@ -45,24 +45,24 @@ android {
         disable 'InvalidPackage'  // Some libraries have issues with this
         disable 'OldTargetApi'    // Due to Robolectric that modifies the manifest when running tests
     }
-    buildToolsVersion '25.0.2'
+    buildToolsVersion androidBuildToolsVersion
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     def dataDependencies = rootProject.ext.dataDependencies
     def testDependencies = rootProject.ext.dataTestDependencies
 
-    compile project(':domain')
-    compile files('libs/commons-codec-1.7.jar')
+    api project(':domain')
+    implementation files('libs/commons-codec-1.7.jar')
 
-    provided dataDependencies.javaxAnnotation
-    compile dataDependencies.javaxInject
-    compile dataDependencies.okHttp
-    compile dataDependencies.gson
-    compile dataDependencies.rxJava
-    compile dataDependencies.rxAndroid
-    compile dataDependencies.androidAnnotations
+    compileOnly dataDependencies.javaxAnnotation
+    implementation dataDependencies.javaxInject
+    implementation dataDependencies.okHttp
+    implementation dataDependencies.gson
+    implementation dataDependencies.rxJava
+    implementation dataDependencies.rxAndroid
+    implementation dataDependencies.androidAnnotations
 
 }
 

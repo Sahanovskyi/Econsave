@@ -1,83 +1,8 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
+//apply plugin: 'com.neenbedankt.android-apt'
 
 
 android {
-//    compileSdkVersion 25
-//    buildToolsVersion "25.0.2"
-//
-//    defaultConfig {
-//        applicationId "com.gw.gaduationwork"
-//        minSdkVersion 15
-//        targetSdkVersion 25
-//        versionCode 1
-//        versionName "1.0"
-//        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-//    }
-//    buildTypes {
-//        release {
-//            minifyEnabled false
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//        }
-//    }
-//
-//}
-//configurations.all {
-//    resolutionStrategy {
-//        force 'com.google.code.findbugs:jsr305:1.3.9', 'com.google.code.findbugs:jsr305:2.0.1'
-//    }
-//}
-//dependencies {
-//
-//    compile fileTree(include: ['*.jar'], dir: 'libs')
-//    testCompile('com.squareup.assertj:assertj-android:1.0.0') {
-//        exclude group: 'com.android.support', module: 'support-annotations'
-//    }
-//
-//    //
-////
-////    compile 'com.google.dagger:dagger:2.7'
-////    compile 'com.google.dagger:dagger-android:2.10'
-////    annotationProcessor 'com.google.dagger:dagger-android-processor:2.10'
-////    annotationProcessor 'com.google.dagger:dagger-compiler:2.10'
-//    compile 'com.android.support:appcompat-v7:25.3.1'
-//
-//    compile project(':data')
-// //   compile project  (':domain')
-//    compile files('libs/commons-codec-1.7.jar')
-//
-//
-//    compile 'com.jakewharton:butterknife:8.5.1'
-//    apt 'com.jakewharton:butterknife-compiler:8.5.1'
-//
-//    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-//
-//
-//
-//    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-//    compile 'io.reactivex.rxjava2:rxjava:2.0.9'
-//
-//    compile 'com.google.dagger:dagger:2.7'
-//    compile 'com.android.support:design:25.3.1'
-//    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-//    compile 'com.jjoe64:graphview:4.2.1'
-//    compile 'com.android.support:support-v4:25.3.1'
-//
-//    compile 'com.jakewharton:butterknife:8.5.1'
-//
-//    testCompile 'org.mockito:mockito-core:1.10.19'
-//    testCompile 'junit:junit:4.12'
-//
-//    apt 'com.google.dagger:dagger-compiler:2.7'
-
-//    defaultConfig {
-//        applicationId ""
-//        minSdkVersion 15
-//        targetSdkVersion 25
-//        versionCode 1
-//        versionName "1.0"
-//        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-//    }
 
     def globalConfiguration = rootProject.extensions.getByName("ext")
 
@@ -135,7 +60,7 @@ android {
             signingConfig signingConfigs.debug
         }
     }
-    buildToolsVersion '25.0.2'
+    buildToolsVersion androidBuildToolsVersion
 }
 configurations.all {
     resolutionStrategy {
@@ -147,30 +72,30 @@ dependencies {
     def presentationTestDependencies = rootProject.ext.presentationTestDependencies
     //   def developmentDependencies = rootProject.ext.developmentDependencies
 
-    compile project(':domain')
-    compile project(':data')
+    api project(':domain')
+    api project(':data')
 
-    apt presentationDependencies.daggerCompiler
-    apt presentationDependencies.butterKnifeCompiler
+    annotationProcessor presentationDependencies.daggerCompiler
+    annotationProcessor presentationDependencies.butterKnifeCompiler
 
-    compile presentationDependencies.dagger
-    compile presentationDependencies.butterKnife
-    compile presentationDependencies.recyclerView
-    compile presentationDependencies.cardView
-    compile presentationDependencies.rxJava
-    compile presentationDependencies.rxAndroid
-    compile presentationDependencies.appCompat_v7
-    compile presentationDependencies.support_v4
-    compile presentationDependencies.supportDesign
-    compile presentationDependencies.MPAndroidChart
+    implementation presentationDependencies.dagger
+    implementation presentationDependencies.butterKnife
+    implementation presentationDependencies.recyclerView
+    implementation presentationDependencies.cardView
+    implementation presentationDependencies.rxJava
+    implementation presentationDependencies.rxAndroid
+    implementation presentationDependencies.appCompat_v7
+    implementation presentationDependencies.support_v4
+    implementation presentationDependencies.supportDesign
+    implementation presentationDependencies.MPAndroidChart
 
-    compile presentationDependencies.picasso;
-    compile presentationDependencies.circleImageView;
-    compile presentationDependencies.constraintLayout;
-    compile presentationDependencies.playServicesAuth;
-    compile presentationDependencies.firebaseAuth;
-    compile presentationDependencies.firebaseDatabase;
-    provided presentationDependencies.javaxAnnotation
+    implementation presentationDependencies.picasso;
+    implementation presentationDependencies.circleImageView;
+    implementation presentationDependencies.constraintLayout;
+    implementation presentationDependencies.playServicesAuth;
+    implementation presentationDependencies.firebaseAuth;
+    implementation presentationDependencies.firebaseDatabase;
+    compileOnly presentationDependencies.javaxAnnotation
 
     androidTestCompile presentationTestDependencies.mockito
     androidTestCompile presentationTestDependencies.dexmaker
@@ -178,8 +103,8 @@ dependencies {
     androidTestCompile presentationTestDependencies.espresso
     androidTestCompile presentationTestDependencies.testingSupportLib
 
-    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
-    compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.facebook.android:facebook-android-sdk:4.39.0'
+//    implementation 'com.android.support:support-v4:25.3.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 }
 apply plugin: 'com.google.gms.google-services'

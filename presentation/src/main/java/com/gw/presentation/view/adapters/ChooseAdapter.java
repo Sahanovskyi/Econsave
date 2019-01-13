@@ -9,7 +9,7 @@ import android.widget.RadioButton;
 
 import com.gw.presentation.R;
 
-import org.jetbrains.annotations.NotNull;
+//import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -39,9 +39,8 @@ public class ChooseAdapter extends ArrayAdapter<String> {
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    @NotNull
     @Override
-    public View getView(final int position, View convertView, @NotNull final ViewGroup parent) {
+    public View getView(final int position, View convertView,  final ViewGroup parent) {
         View view = convertView;
         ViewHolder holder;
 
